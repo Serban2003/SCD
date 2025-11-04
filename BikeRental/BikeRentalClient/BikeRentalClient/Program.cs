@@ -1,3 +1,7 @@
+using BikeRentalClient.UserUtils;
+using BikeRentalClient.ManufacturerUtils;
+using BikeRentalClient.BikeUtils;
+
 namespace BikeRentalClient
 {
     internal static class Program
@@ -8,10 +12,18 @@ namespace BikeRentalClient
         [STAThread]
         static void Main()
         {
-            // To customize application configuration such as set high DPI settings or default font,
-            // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            Application.Run(new Form1());
+            var httpClient = new HttpClient();
+
+            var bikeService = new BikeService(httpClient);
+            var manufacturerService = new ManufacturerService(httpClient);
+            var userService = new UserService(httpClient);
+
+            bikeService.CreateConnection();
+            manufacturerService.CreateConnection();
+            userService.CreateConnection();
+
+            Application.Run(new Dashboard(bikeService, manufacturerService, userService)); // TODO: pass the services to the form
         }
     }
 }

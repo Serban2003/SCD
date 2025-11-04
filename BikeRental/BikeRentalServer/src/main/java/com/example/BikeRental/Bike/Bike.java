@@ -1,13 +1,12 @@
 package com.example.BikeRental.Bike;
 
-import com.example.BikeRental.Component.Component;
 import com.example.BikeRental.Manufacturer.Manufacturer;
+import com.example.BikeRental.User.User;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.util.List;
+import java.util.Date;
 
 @Entity
 @Data
@@ -16,23 +15,20 @@ import java.util.List;
 public class Bike {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Integer bike_id;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "manufacturer_id")
     private Manufacturer manufacturer;
     private String model;
     private Integer year;
-
-    @OneToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    @JoinTable(
-            name = "bike_components",
-            joinColumns = @JoinColumn(name = "bike_id"),
-            inverseJoinColumns = @JoinColumn(name = "component_id")
-    )
-    private List<Component> components;
     private Float price;
     private Enum<BikeStatus> status;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private User currentRenter;
+    private Date rentDate;
 
     private enum BikeStatus{
         Available,

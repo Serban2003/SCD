@@ -1,44 +1,43 @@
-package com.example.BikeRental.Bike;
+package com.example.BikeRental.User;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController
-@RequestMapping("/bikes")
-public class BikeController {
-    private final BikeService bikeService;
+@RequestMapping("/users")
+public class UserController {
+    private final UserService userService;
 
-    public BikeController(BikeService bikeService){
-        this.bikeService = bikeService;
+    public UserController(UserService userService) {
+        this.userService = userService;
     }
 
     @GetMapping
-    public List<Bike> getAllBikes() {
-        return bikeService.getAllBikes();
+    public List<User> getAllUsers() {
+        return userService.getAllUsers();
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Bike> getById(@PathVariable Integer id) {
-        return bikeService.getBike(id)
+    public ResponseEntity<User> getById(@PathVariable Integer id) {
+        return userService.getUser(id)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
 
     @PostMapping
-    public ResponseEntity<Bike> addBike(@RequestBody Bike bike) {
-        Bike created = bikeService.addBike(bike);
+    public ResponseEntity<User> addUser(@RequestBody User user) {
+        User created = userService.addUser(user);
         return ResponseEntity.status(HttpStatus.CREATED).body(created);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Bike> updateBike(
+    public ResponseEntity<User> updateUser(
             @PathVariable Integer id,
-            @RequestBody Bike bike) {
+            @RequestBody User user) {
         try {
-            Bike updated = bikeService.updateBike(id, bike);
+            User updated = userService.updateUser(id, user);
             return ResponseEntity.ok(updated);
         } catch (IllegalArgumentException e) {
             return ResponseEntity.notFound().build();
@@ -46,9 +45,9 @@ public class BikeController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteBike(@PathVariable Integer id) {
+    public ResponseEntity<Void> deleteUser(@PathVariable Integer id) {
         try {
-            bikeService.deleteBike(id);
+            userService.deleteUser(id);
             return ResponseEntity.noContent().build();
         } catch (Exception e) {
             return ResponseEntity.notFound().build();

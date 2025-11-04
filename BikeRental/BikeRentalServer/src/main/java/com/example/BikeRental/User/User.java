@@ -1,4 +1,4 @@
-package com.example.BikeRental.Manufacturer;
+package com.example.BikeRental.User;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -12,10 +12,11 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Manufacturer {
+public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer manufacturer_id;
-    private String name;
-    private String description;
+    private Integer user_id;
+    private String firstname;
+    private String lastname;
+    private String email;
 }

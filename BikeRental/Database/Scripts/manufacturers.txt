@@ -1,0 +1,12 @@
+INSERT INTO manufacturers (name, description) VALUES
+('Trek',        'US-based brand known for road and mountain bikes'),
+('Giant',       'World’s largest bicycle manufacturer, based in Taiwan'),
+('Specialized', 'High-performance road and MTB bikes, innovation leader'),
+('Cannondale',  'US brand famous for lightweight aluminum frames'),
+('Scott',       'Swiss brand known for racing and performance bikes'),
+('Bianchi',     'Historic Italian brand with signature Celeste color'),
+('Canyon',      'German direct-to-consumer performance bike brand'),
+('YT Industries','German brand focused on aggressive trail and downhill bikes'),
+('Cube',        'German manufacturer known for value-oriented performance bikes'),
+('Mondraker',   'Spanish company famous for Forward Geometry mountain bikes'),
+('Santa Cruz',  'California-based premium mountain bike manufacturer');

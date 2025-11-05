@@ -10,6 +10,7 @@ CREATE TABLE IF NOT EXISTS users (
   firstname VARCHAR(100) NOT NULL,
   lastname  VARCHAR(100) NOT NULL,
   email     VARCHAR(255) NOT NULL UNIQUE
+  password  VARCHAR(100) NOT NULL
 ) ENGINE=InnoDB;
 
 CREATE TABLE IF NOT EXISTS bikes (
@@ -20,7 +21,8 @@ CREATE TABLE IF NOT EXISTS bikes (
   price DECIMAL(10,2) NOT NULL,
   status VARCHAR(20) NOT NULL,
   current_renter_id INT NULL,
-  rent_date DATETIME NULL
+  rent_date DATETIME NULL,
+  rent_time INT NULL
 ) ENGINE=InnoDB;
 
 ALTER TABLE bikes

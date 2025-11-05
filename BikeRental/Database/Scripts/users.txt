@@ -1,0 +1,6 @@
+INSERT INTO users (firstname, lastname, email, password) VALUES
+('Iustinian', 'Serban',  'iustinianserban@gmail.com', '$2a$12$rxvR7u.kH7bJcSpGzZMLoOPH5jDBcGsy20sO3z9KPh9bQlkaVhP.q'),
+('Flaviu',    'Chitulea','flaviu.chitulea@example.com', '$2a$12$R14WnZtX9jSdnrzU4YkF..3dOf8MchmL2zQ9EIQppCeo9M1JRRpRq'),
+('Liviu',     'Cristea', 'liviu.cristea@example.com',    '$2a$12$zTRtkR/8l63f8BdyySmBG.LOnYzFA06aW7BtYkAjP9boX3.I1zNq.'),
+('Mihai',     'Pop',     'mihai.pop@example.com',        '$2a$12$KWxvH9EvPSH1xj28Z0ZteOHpU0RWzPZ7dMhdXZrQQ1eJ4C1Y6mUem'),
+('Daniela',   'Soare',   'daniela.soare@outlook.ro',     '$2a$12$s38LAsAzlfPDAHnUujrTAOFrzvRhePD5cMxd8znI1VPS7pUkk2FZa');

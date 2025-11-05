@@ -15,3 +15,23 @@ C:\Users\IustinianSerban\Desktop\SCD\BikeRental\BikeRentalClient\BikeRentalClien
 C:\Users\IustinianSerban\Desktop\SCD\BikeRental\BikeRentalClient\BikeRentalClient\obj\Debug\net8.0-windows\BikeRentalClient.pdb
 C:\Users\IustinianSerban\Desktop\SCD\BikeRental\BikeRentalClient\BikeRentalClient\obj\Debug\net8.0-windows\BikeRentalClient.genruntimeconfig.cache
 C:\Users\IustinianSerban\Desktop\SCD\BikeRental\BikeRentalClient\BikeRentalClient\obj\Debug\net8.0-windows\ref\BikeRentalClient.dll
+C:\Users\iusti\Desktop\Facultate\An 4\SCD\BikeRental\BikeRentalClient\BikeRentalClient\obj\Debug\net8.0-windows\BikeRentalClient.Dashboard.resources
+C:\Users\iusti\Desktop\Facultate\An 4\SCD\BikeRental\BikeRentalClient\BikeRentalClient\obj\Debug\net8.0-windows\BikeRentalClient.csproj.GenerateResource.cache
+C:\Users\iusti\Desktop\Facultate\An 4\SCD\BikeRental\BikeRentalClient\BikeRentalClient\obj\Debug\net8.0-windows\BikeRentalClient.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\iusti\Desktop\Facultate\An 4\SCD\BikeRental\BikeRentalClient\BikeRentalClient\obj\Debug\net8.0-windows\BikeRentalClient.AssemblyInfoInputs.cache
+C:\Users\iusti\Desktop\Facultate\An 4\SCD\BikeRental\BikeRentalClient\BikeRentalClient\obj\Debug\net8.0-windows\BikeRentalClient.AssemblyInfo.cs
+C:\Users\iusti\Desktop\Facultate\An 4\SCD\BikeRental\BikeRentalClient\BikeRentalClient\obj\Debug\net8.0-windows\BikeRentalClient.csproj.CoreCompileInputs.cache
+C:\Users\iusti\Desktop\Facultate\An 4\SCD\BikeRental\BikeRentalClient\BikeRentalClient\obj\Debug\net8.0-windows\BikeRentalClient.sourcelink.json
+C:\Users\iusti\Desktop\Facultate\An 4\SCD\BikeRental\BikeRentalClient\BikeRentalClient\obj\Debug\net8.0-windows\BikeRentalClient.dll
+C:\Users\iusti\Desktop\Facultate\An 4\SCD\BikeRental\BikeRentalClient\BikeRentalClient\obj\Debug\net8.0-windows\refint\BikeRentalClient.dll
+C:\Users\iusti\Desktop\Facultate\An 4\SCD\BikeRental\BikeRentalClient\BikeRentalClient\obj\Debug\net8.0-windows\BikeRentalClient.pdb
+C:\Users\iusti\Desktop\Facultate\An 4\SCD\BikeRental\BikeRentalClient\BikeRentalClient\bin\Debug\net8.0-windows\BikeRentalClient.exe
+C:\Users\iusti\Desktop\Facultate\An 4\SCD\BikeRental\BikeRentalClient\BikeRentalClient\bin\Debug\net8.0-windows\BikeRentalClient.deps.json
+C:\Users\iusti\Desktop\Facultate\An 4\SCD\BikeRental\BikeRentalClient\BikeRentalClient\bin\Debug\net8.0-windows\BikeRentalClient.runtimeconfig.json
+C:\Users\iusti\Desktop\Facultate\An 4\SCD\BikeRental\BikeRentalClient\BikeRentalClient\bin\Debug\net8.0-windows\BikeRentalClient.dll
+C:\Users\iusti\Desktop\Facultate\An 4\SCD\BikeRental\BikeRentalClient\BikeRentalClient\bin\Debug\net8.0-windows\BikeRentalClient.pdb
+C:\Users\iusti\Desktop\Facultate\An 4\SCD\BikeRental\BikeRentalClient\BikeRentalClient\obj\Debug\net8.0-windows\BikeRentalClient.genruntimeconfig.cache
+C:\Users\iusti\Desktop\Facultate\An 4\SCD\BikeRental\BikeRentalClient\BikeRentalClient\obj\Debug\net8.0-windows\ref\BikeRentalClient.dll
+C:\Users\iusti\Desktop\Facultate\An 4\SCD\BikeRental\BikeRentalClient\BikeRentalClient\obj\Debug\net8.0-windows\BikeRentalClient.AddBikeForm.resources
+C:\Users\iusti\Desktop\Facultate\An 4\SCD\BikeRental\BikeRentalClient\BikeRentalClient\obj\Debug\net8.0-windows\BikeRentalClient.AddManufacturerForm.resources
+C:\Users\iusti\Desktop\Facultate\An 4\SCD\BikeRental\BikeRentalClient\BikeRentalClient\obj\Debug\net8.0-windows\BikeRentalClient.AddUserForm.resources

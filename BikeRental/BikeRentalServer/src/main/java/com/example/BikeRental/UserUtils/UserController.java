@@ -1,9 +1,10 @@
-package com.example.BikeRental.User;
+package com.example.BikeRental.UserUtils;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @RestController
 @RequestMapping("/users")
@@ -23,34 +24,26 @@ public class UserController {
     public ResponseEntity<User> getById(@PathVariable Integer id) {
         return userService.getUser(id)
                 .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+                .orElseThrow(() -> new NoSuchElementException("User not found with id: " + id));
     }
 
     @PostMapping
     public ResponseEntity<User> addUser(@RequestBody User user) {
-        User created = userService.addUser(user);
-        return ResponseEntity.status(HttpStatus.CREATED).body(created);
+        User createdUser = userService.addUser(user);
+        return ResponseEntity.status(HttpStatus.CREATED).body(createdUser);
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<User> updateUser(
             @PathVariable Integer id,
             @RequestBody User user) {
-        try {
-            User updated = userService.updateUser(id, user);
-            return ResponseEntity.ok(updated);
-        } catch (IllegalArgumentException e) {
-            return ResponseEntity.notFound().build();
-        }
+        User updated = userService.updateUser(id, user); // may throw IllegalArgumentException if not found
+        return ResponseEntity.ok(updated);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteUser(@PathVariable Integer id) {
-        try {
-            userService.deleteUser(id);
-            return ResponseEntity.noContent().build();
-        } catch (Exception e) {
-            return ResponseEntity.notFound().build();
-        }
+        userService.deleteUser(id); // throw NoSuchElementException if missing
+        return ResponseEntity.noContent().build();
     }
 }

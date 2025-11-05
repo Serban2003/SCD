@@ -1,4 +1,4 @@
-package com.example.BikeRental.Manufacturer;
+package com.example.BikeRental.ManufacturerUtils;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

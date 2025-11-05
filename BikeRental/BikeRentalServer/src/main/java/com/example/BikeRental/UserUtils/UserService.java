@@ -1,6 +1,7 @@
-package com.example.BikeRental.User;
+package com.example.BikeRental.UserUtils;
 
 import jakarta.transaction.Transactional;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
@@ -8,12 +9,15 @@ import java.util.Optional;
 @Service
 public class UserService {
     private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
-    public UserService(UserRepository userRepository){
+    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder){
         this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     public User addUser(User user){
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         return userRepository.save(user);
     }
 
@@ -37,6 +41,10 @@ public class UserService {
         existingUser.setFirstname(payloadUser.getFirstname());
         existingUser.setLastname(payloadUser.getLastname());
         existingUser.setEmail(payloadUser.getEmail());
+
+        if (payloadUser.getPassword() != null && !payloadUser.getPassword().isBlank()) {
+            existingUser.setPassword(passwordEncoder.encode(payloadUser.getPassword()));
+        }
 
         return userRepository.save(existingUser);
     }

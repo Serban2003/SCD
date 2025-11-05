@@ -1,4 +1,4 @@
-package com.example.BikeRental.Manufacturer;
+package com.example.BikeRental.ManufacturerUtils;
 
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;

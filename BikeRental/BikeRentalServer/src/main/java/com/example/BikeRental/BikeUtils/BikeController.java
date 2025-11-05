@@ -1,17 +1,19 @@
-package com.example.BikeRental.Bike;
+package com.example.BikeRental.BikeUtils;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @RestController
 @RequestMapping("/bikes")
 public class BikeController {
+
     private final BikeService bikeService;
 
-    public BikeController(BikeService bikeService){
+    public BikeController(BikeService bikeService) {
         this.bikeService = bikeService;
     }
 
@@ -24,7 +26,7 @@ public class BikeController {
     public ResponseEntity<Bike> getById(@PathVariable Integer id) {
         return bikeService.getBike(id)
                 .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+                .orElseThrow(() -> new NoSuchElementException("Bike not found with id: " + id));
     }
 
     @PostMapping
@@ -34,24 +36,14 @@ public class BikeController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Bike> updateBike(
-            @PathVariable Integer id,
-            @RequestBody Bike bike) {
-        try {
-            Bike updated = bikeService.updateBike(id, bike);
-            return ResponseEntity.ok(updated);
-        } catch (IllegalArgumentException e) {
-            return ResponseEntity.notFound().build();
-        }
+    public ResponseEntity<Bike> updateBike(@PathVariable Integer id, @RequestBody Bike bike) {
+        Bike updated = bikeService.updateBike(id, bike);
+        return ResponseEntity.ok(updated);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteBike(@PathVariable Integer id) {
-        try {
-            bikeService.deleteBike(id);
-            return ResponseEntity.noContent().build();
-        } catch (Exception e) {
-            return ResponseEntity.notFound().build();
-        }
+        bikeService.deleteBike(id);
+        return ResponseEntity.noContent().build();
     }
 }

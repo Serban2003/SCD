@@ -1,4 +1,4 @@
-package com.example.BikeRental.Bike;
+package com.example.BikeRental.BikeUtils;
 
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
@@ -34,12 +34,12 @@ public class BikeService {
         Bike existingBike = bikeRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Bike not found: " + id));
 
-        existingBike.setManufacturer(payloadBike.getManufacturer());
+        existingBike.setManufacturer_id(payloadBike.getManufacturer_id());
         existingBike.setModel(payloadBike.getModel());
         existingBike.setYear(payloadBike.getYear());
         existingBike.setPrice(payloadBike.getPrice());
         existingBike.setStatus(payloadBike.getStatus());
-        existingBike.setCurrentRenter(payloadBike.getCurrentRenter());
+        existingBike.setCurrentRenter_id(payloadBike.getCurrentRenter_id());
         existingBike.setRentDate(payloadBike.getRentDate());
 
         return bikeRepository.save(existingBike);

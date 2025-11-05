@@ -1,38 +1,47 @@
-package com.example.BikeRental.Bike;
+package com.example.BikeRental.BikeUtils;
 
-import com.example.BikeRental.Manufacturer.Manufacturer;
-import com.example.BikeRental.User.User;
+import com.example.BikeRental.ManufacturerUtils.Manufacturer;
+import com.example.BikeRental.UserUtils.User;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+
 import java.util.Date;
 
 @Entity
+@Table(name="bikes")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class Bike {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private Integer bike_id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "manufacturer_id")
-    private Manufacturer manufacturer;
+    @Column(nullable = false)
+    private Integer manufacturer_id;
+
+    @Column(nullable = false)
     private String model;
+
+    @Column(nullable = false)
     private Integer year;
+
+    @Column(nullable = false)
     private Float price;
-    private Enum<BikeStatus> status;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
-    private User currentRenter;
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private BikeStatus status;
+
+    private Integer currentRenter_id;
     private Date rentDate;
+    private Integer rentTime; //hours
 
-    private enum BikeStatus{
-        Available,
-        Rented,
-        Maintenance
+    public enum BikeStatus{
+        AVAILABLE,
+        RENTED,
+        MAINTENANCE
     }
 }

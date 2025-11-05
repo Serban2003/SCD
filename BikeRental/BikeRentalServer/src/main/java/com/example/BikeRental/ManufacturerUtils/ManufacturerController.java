@@ -1,13 +1,15 @@
-package com.example.BikeRental.Manufacturer;
+package com.example.BikeRental.ManufacturerUtils;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @RestController
 @RequestMapping("/manufacturers")
 public class ManufacturerController {
+
     private final ManufacturerService manufacturerService;
 
     public ManufacturerController(ManufacturerService manufacturerService) {
@@ -23,7 +25,7 @@ public class ManufacturerController {
     public ResponseEntity<Manufacturer> getById(@PathVariable Integer id) {
         return manufacturerService.getManufacturer(id)
                 .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+                .orElseThrow(() -> new NoSuchElementException("Manufacturer not found with id: " + id));
     }
 
     @PostMapping
@@ -33,24 +35,14 @@ public class ManufacturerController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Manufacturer> updateManufacturer(
-            @PathVariable Integer id,
-            @RequestBody Manufacturer manufacturer) {
-        try {
-            Manufacturer updated = manufacturerService.updateManufacturer(id, manufacturer);
-            return ResponseEntity.ok(updated);
-        } catch (IllegalArgumentException e) {
-            return ResponseEntity.notFound().build();
-        }
+    public ResponseEntity<Manufacturer> updateManufacturer(@PathVariable Integer id, @RequestBody Manufacturer manufacturer) {
+        Manufacturer updated = manufacturerService.updateManufacturer(id, manufacturer);
+        return ResponseEntity.ok(updated);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteManufacturer(@PathVariable Integer id) {
-        try {
-            manufacturerService.deleteManufacturer(id);
-            return ResponseEntity.noContent().build();
-        } catch (Exception e) {
-            return ResponseEntity.notFound().build();
-        }
+        manufacturerService.deleteManufacturer(id);
+        return ResponseEntity.noContent().build();
     }
 }

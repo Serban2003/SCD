@@ -1,11 +1,38 @@
 {
   "version": 3,
   "targets": {
-    "net8.0-windows7.0": {}
+    "net8.0-windows7.0": {
+      "RangeSlider/1.0.0": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/RangeSelection.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/RangeSelection.dll": {}
+        }
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "RangeSlider/1.0.0": {
+      "sha512": "PbJNpEhcd8zEo67XPe82lyBE36CoPJU+VCileX2RRt0PIs4cc6xBinf/IhQdxBH8tdBtegj9HtnLPpthCsHycg==",
+      "type": "package",
+      "path": "rangeslider/1.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "images/logo.png",
+        "lib/netstandard1.0/RangeSelection.dll",
+        "lib/netstandard2.0/RangeSelection.dll",
+        "rangeslider.1.0.0.nupkg.sha512",
+        "rangeslider.nuspec"
+      ]
+    }
+  },
   "projectFileDependencyGroups": {
-    "net8.0-windows7.0": []
+    "net8.0-windows7.0": [
+      "RangeSlider >= 1.0.0"
+    ]
   },
   "packageFolders": {
     "C:\\Users\\iusti\\.nuget\\packages\\": {},
@@ -56,6 +83,12 @@
     "frameworks": {
       "net8.0-windows7.0": {
         "targetAlias": "net8.0-windows",
+        "dependencies": {
+          "RangeSlider": {
+            "target": "Package",
+            "version": "[1.0.0, )"
+          }
+        },
         "imports": [
           "net461",
           "net462",

@@ -23,7 +23,7 @@ namespace BikeRentalClient
             manufacturerService.CreateConnection();
             userService.CreateConnection();
 
-            Application.Run(new Dashboard(bikeService, manufacturerService, userService)); // TODO: pass the services to the form
+            Application.Run(new Dashboard(bikeService, manufacturerService, userService));
         }
     }
 }

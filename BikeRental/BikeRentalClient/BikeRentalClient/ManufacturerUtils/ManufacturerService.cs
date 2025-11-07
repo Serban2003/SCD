@@ -1,6 +1,7 @@
-﻿using BikeRentalClient.BikeUtils;
-using System.Net;
+﻿using System.Net;
+using System.Text;
 using System.Text.Json;
+using BikeRentalClient.BikeUtils;
 
 namespace BikeRentalClient.ManufacturerUtils
 {
@@ -8,51 +9,71 @@ namespace BikeRentalClient.ManufacturerUtils
     {
         public ManufacturerService(HttpClient client) : base(client) { }
 
-        public List<Manufacturer> GetAllManufacturers()
+        // GET /manufacturers
+        public (bool Success, string Message, List<Manufacturer> Manufacturers) GetAllManufacturers()
         {
-            HttpResponseMessage response = client.GetAsync("manufacturers").Result;
+            using var response = client.GetAsync("manufacturers").Result;
 
             if (response.IsSuccessStatusCode)
             {
-                string resultString = response.Content.ReadAsStringAsync().Result;
-                List<Manufacturer>? manufacturers = JsonSerializer.Deserialize<List<Manufacturer>>(resultString, JsonOpts);
-                return manufacturers ?? new List<Manufacturer>();
+                var json = response.Content.ReadAsStringAsync().Result;
+                var manufacturers = JsonSerializer.Deserialize<List<Manufacturer>>(json, JsonOpts) ?? new List<Manufacturer>();
+                return (true, "Fetched manufacturers.", manufacturers);
             }
 
-            return new List<Manufacturer>();
+            return (false, BuildErrorMessage(response), new List<Manufacturer>());
         }
 
-        public Manufacturer GetManufacturerById(int id)
+        // GET /manufacturers/{id} -- not used currently
+        public (bool Success, string Message, Manufacturer? Manufacturer) GetManufacturerById(int id)
         {
-            HttpResponseMessage response = client.GetAsync($"manufacturers/{id}").Result;
+            using var response = client.GetAsync($"manufacturers/{id}").Result;
+
             if (response.IsSuccessStatusCode)
             {
-                string resultString = response.Content.ReadAsStringAsync().Result;
-                Manufacturer? manufacturer = JsonSerializer.Deserialize<Manufacturer>(resultString, JsonOpts);
-                return manufacturer ?? new Manufacturer();
+                var json = response.Content.ReadAsStringAsync().Result;
+                var manu = JsonSerializer.Deserialize<Manufacturer>(json, JsonOpts);
+                return (true, "Fetched manufacturer.", manu);
             }
-            return new Manufacturer();
+
+            return (false, BuildErrorMessage(response), null);
         }
+
+        // POST /manufacturers -- not used currently
         public (bool Success, string Message) AddManufacturer(Manufacturer manufacturer)
         {
             var json = JsonSerializer.Serialize(manufacturer, JsonOpts);
-            var content = new StringContent(json, System.Text.Encoding.UTF8, "application/json");
-            var response = client.PostAsync("manufacturers", content).Result;
-            
+            using var content = new StringContent(json, Encoding.UTF8, "application/json");
+            using var response = client.PostAsync("manufacturers", content).Result;
+
             if (response.IsSuccessStatusCode)
-                return (true, "Manufacturer added successfully!");
+                return (true, "Manufacturer added successfully.");
 
-            if (response.StatusCode == HttpStatusCode.Conflict)
-                return (false, "Conflict: duplicate or constraint violation.");
-
-            if (response.StatusCode == HttpStatusCode.BadRequest)
-            {
-                var msg = response.Content.ReadAsStringAsync().Result;
-                return (false, $"Invalid input: {msg}");
-            }
-
-            return (false, $"Unexpected error ({(int)response.StatusCode})");
+            return (false, BuildErrorMessage(response));
         }
 
+        // PUT /manufacturers/{id} -- not used currently
+        public (bool Success, string Message) UpdateManufacturer(Manufacturer manufacturer)
+        {
+            var json = JsonSerializer.Serialize(manufacturer, JsonOpts);
+            using var content = new StringContent(json, Encoding.UTF8, "application/json");
+            using var response = client.PutAsync($"manufacturers/{manufacturer.Manufacturer_id}", content).Result;
+
+            if (response.IsSuccessStatusCode)
+                return (true, "Manufacturer updated successfully.");
+
+            return (false, BuildErrorMessage(response));
+        }
+
+        // DELETE /manufacturers/{id} -- not used currently
+        public (bool Success, string Message) DeleteManufacturer(int id)
+        {
+            using var response = client.DeleteAsync($"manufacturers/{id}").Result;
+
+            if (response.IsSuccessStatusCode)
+                return (true, "Manufacturer deleted successfully.");
+
+            return (false, BuildErrorMessage(response));
+        }
     }
 }

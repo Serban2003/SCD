@@ -1,5 +1,4 @@
-﻿using System.Net;
-using System.Text;
+﻿using System.Text;
 using System.Text.Json;
 
 namespace BikeRentalClient.BikeUtils
@@ -8,45 +7,69 @@ namespace BikeRentalClient.BikeUtils
     {
         public BikeService(HttpClient client) : base(client) { }
 
-        public List<Bike> GetAllBikes()
+        // GET /bikes
+        public (bool Success, string Message, List<Bike> Bikes) GetAllBikes()
         {
-            var response = client.GetAsync("bikes").Result;
+            using var response = client.GetAsync("bikes").Result;
 
             if (response.IsSuccessStatusCode)
             {
-                var resultString = response.Content.ReadAsStringAsync().Result;
-                var bikes = JsonSerializer.Deserialize<List<Bike>>(resultString, JsonOpts);
-                return bikes ?? new List<Bike>();
+                var json = response.Content.ReadAsStringAsync().Result;
+                var bikes = JsonSerializer.Deserialize<List<Bike>>(json, JsonOpts) ?? new List<Bike>();
+                return (true, "Fetched bikes.", bikes);
             }
-            return new List<Bike>();
+
+            return (false, BuildErrorMessage(response), new List<Bike>());
         }
 
-        public List<Bike> GetFilteredBikes(Bike.BikeStatus bikeStatus)
+        public (bool Success, string Message, List<Bike> Bikes) GetFilteredBikes(Bike.BikeStatus bikeStatus)
         {
-            var bikes = GetAllBikes();
-            return bikes.Where(b => b.Status == bikeStatus).ToList();
+            var (ok, msg, bikes) = GetAllBikes();
+            if (!ok) return (false, msg, new List<Bike>());
+
+            var filtered = bikes.Where(b => b.Status == bikeStatus).ToList();
+            return (true, $"Fetched {filtered.Count} bike(s) with status {bikeStatus}.", filtered);
         }
 
-        // Return status + message; no MessageBox here
+        // POST /bikes
         public (bool Success, string Message) AddBike(Bike bike)
         {
             var json = JsonSerializer.Serialize(bike, JsonOpts);
-            var content = new StringContent(json, Encoding.UTF8, "application/json");
-            var response = client.PostAsync("bikes", content).Result;
+            using var content = new StringContent(json, Encoding.UTF8, "application/json");
+            using var response = client.PostAsync("bikes", content).Result;
 
             if (response.IsSuccessStatusCode)
-                return (true, "Bike added successfully!");
+                return (true, "Bike added successfully.");
 
-            if (response.StatusCode == HttpStatusCode.Conflict)
-                return (false, "Conflict: duplicate or constraint violation.");
+            return (false, BuildErrorMessage(response));
+        }
 
-            if (response.StatusCode == HttpStatusCode.BadRequest)
+        // PUT /bikes/{id}
+        public (bool Success, string Message) UpdateBike(Bike bike)
+        {
+            var json = JsonSerializer.Serialize(bike, JsonOpts);
+            using var content = new StringContent(json, Encoding.UTF8, "application/json");
+            using var response = client.PutAsync($"bikes/{bike.Bike_id}", content).Result;
+
+            if (response.IsSuccessStatusCode)
+                return (true, "Bike updated successfully.");
+
+            return (false, BuildErrorMessage(response));
+        }
+
+        // GET /bikes/rented/{userId}
+        public (bool Success, string Message, List<Bike> Bikes) GetRentedBikesByUser(int userId)
+        {
+            using var response = client.GetAsync($"bikes/rented/{userId}").Result;
+
+            if (response.IsSuccessStatusCode)
             {
-                var msg = response.Content.ReadAsStringAsync().Result;
-                return (false, $"Invalid input: {msg}");
+                var json = response.Content.ReadAsStringAsync().Result;
+                var bikes = JsonSerializer.Deserialize<List<Bike>>(json, JsonOpts) ?? new List<Bike>();
+                return (true, "Fetched rented bikes.", bikes);
             }
 
-            return (false, $"Unexpected error ({(int)response.StatusCode})");
+            return (false, BuildErrorMessage(response), new List<Bike>());
         }
     }
 }

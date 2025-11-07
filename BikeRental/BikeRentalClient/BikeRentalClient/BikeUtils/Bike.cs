@@ -16,7 +16,6 @@ namespace BikeRentalClient.BikeUtils
 
         public int? CurrentRenter_id { get; set; } = null;
         public DateTime? RentDate { get; set; } = null;
-        public int? RentTime { get; set; } = null;
         public enum BikeStatus
         {
             AVAILABLE,

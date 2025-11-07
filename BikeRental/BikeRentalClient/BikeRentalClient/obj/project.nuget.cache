@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "NIbjsZmsONY=",
+  "dgSpecHash": "ASjwwYIGhTY=",
   "success": true,
   "projectFilePath": "C:\\Users\\iusti\\Desktop\\Facultate\\An 4\\SCD\\BikeRental\\BikeRentalClient\\BikeRentalClient\\BikeRentalClient.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\iusti\\.nuget\\packages\\rangeslider\\1.0.0\\rangeslider.1.0.0.nupkg.sha512"
+  ],
   "logs": []
 }

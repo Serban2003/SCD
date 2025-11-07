@@ -28,159 +28,102 @@
         /// </summary>
         private void InitializeComponent()
         {
-            TablesList = new ListBox();
-            dataGridMain = new DataGridView();
-            bikeAvailabilityFilterComboBox = new ComboBox();
-            bikeAvailabilityFilterLabel = new Label();
-            showRenterButton = new Button();
-            showManufacturerButton = new Button();
-            actionsGroupBox = new GroupBox();
-            addBikeButton = new Button();
-            addManufacturerButton = new Button();
-            addUserButton = new Button();
-            ((System.ComponentModel.ISupportInitialize)dataGridMain).BeginInit();
-            actionsGroupBox.SuspendLayout();
+            menuStrip = new MenuStrip();
+            bikesMenuItem = new ToolStripMenuItem();
+            manufacturersMenuItem = new ToolStripMenuItem();
+            loginMenuItem = new ToolStripMenuItem();
+            logoutMenuItem = new ToolStripMenuItem();
+            statusUserLabel = new ToolStripTextBox();
+            mainPanel = new Panel();
+            menuStrip.SuspendLayout();
             SuspendLayout();
             // 
-            // TablesList
+            // menuStrip
             // 
-            TablesList.FormattingEnabled = true;
-            TablesList.ItemHeight = 30;
-            TablesList.Items.AddRange(new object[] { "Bikes", "Manufacturers", "Users" });
-            TablesList.Location = new Point(12, 12);
-            TablesList.Margin = new Padding(10);
-            TablesList.Name = "TablesList";
-            TablesList.Size = new Size(239, 94);
-            TablesList.TabIndex = 0;
-            TablesList.SelectedIndexChanged += TablesList_SelectedIndexChanged;
+            menuStrip.AutoSize = false;
+            menuStrip.ImageScalingSize = new Size(28, 28);
+            menuStrip.Items.AddRange(new ToolStripItem[] { bikesMenuItem, manufacturersMenuItem, loginMenuItem, logoutMenuItem, statusUserLabel });
+            menuStrip.Location = new Point(0, 0);
+            menuStrip.Name = "menuStrip";
+            menuStrip.Padding = new Padding(4, 1, 0, 1);
+            menuStrip.Size = new Size(684, 26);
+            menuStrip.TabIndex = 7;
+            menuStrip.Text = "menuStrip1";
+            menuStrip.ItemClicked += menuStrip_ItemClicked;
             // 
-            // dataGridMain
+            // bikesMenuItem
             // 
-            dataGridMain.AllowUserToAddRows = false;
-            dataGridMain.AllowUserToDeleteRows = false;
-            dataGridMain.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
-            dataGridMain.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridMain.Location = new Point(264, 12);
-            dataGridMain.Name = "dataGridMain";
-            dataGridMain.ReadOnly = true;
-            dataGridMain.RowHeadersWidth = 72;
-            dataGridMain.Size = new Size(924, 651);
-            dataGridMain.TabIndex = 1;
-            dataGridMain.SelectionChanged += dataGridMain_SelectionChanged;
+            bikesMenuItem.Name = "bikesMenuItem";
+            bikesMenuItem.Size = new Size(46, 24);
+            bikesMenuItem.Text = "Bikes";
             // 
-            // bikeAvailabilityFilterComboBox
+            // manufacturersMenuItem
             // 
-            bikeAvailabilityFilterComboBox.FormattingEnabled = true;
-            bikeAvailabilityFilterComboBox.Location = new Point(12, 171);
-            bikeAvailabilityFilterComboBox.Name = "bikeAvailabilityFilterComboBox";
-            bikeAvailabilityFilterComboBox.Size = new Size(239, 38);
-            bikeAvailabilityFilterComboBox.TabIndex = 2;
-            bikeAvailabilityFilterComboBox.SelectedIndexChanged += BikeAvailabilityFilterComboBox_SelectedIndexChanged;
+            manufacturersMenuItem.Name = "manufacturersMenuItem";
+            manufacturersMenuItem.Size = new Size(96, 24);
+            manufacturersMenuItem.Text = "Manufacturers";
             // 
-            // bikeAvailabilityFilterLabel
+            // loginMenuItem
             // 
-            bikeAvailabilityFilterLabel.AutoSize = true;
-            bikeAvailabilityFilterLabel.Location = new Point(12, 138);
-            bikeAvailabilityFilterLabel.Name = "bikeAvailabilityFilterLabel";
-            bikeAvailabilityFilterLabel.Size = new Size(118, 30);
-            bikeAvailabilityFilterLabel.TabIndex = 3;
-            bikeAvailabilityFilterLabel.Text = "Availability:";
+            loginMenuItem.Name = "loginMenuItem";
+            loginMenuItem.Size = new Size(49, 24);
+            loginMenuItem.Text = "Login";
             // 
-            // showRenterButton
+            // logoutMenuItem
             // 
-            showRenterButton.Location = new Point(12, 261);
-            showRenterButton.Name = "showRenterButton";
-            showRenterButton.Size = new Size(239, 40);
-            showRenterButton.TabIndex = 5;
-            showRenterButton.Text = "Show Renter Details";
-            showRenterButton.UseVisualStyleBackColor = true;
-            showRenterButton.Click += showRenterButton_Click;
+            logoutMenuItem.Name = "logoutMenuItem";
+            logoutMenuItem.Size = new Size(57, 24);
+            logoutMenuItem.Text = "Logout";
             // 
-            // showManufacturerButton
+            // statusUserLabel
             // 
-            showManufacturerButton.Location = new Point(12, 215);
-            showManufacturerButton.Name = "showManufacturerButton";
-            showManufacturerButton.Size = new Size(239, 40);
-            showManufacturerButton.TabIndex = 4;
-            showManufacturerButton.Text = "Show Manufacturer";
-            showManufacturerButton.UseVisualStyleBackColor = true;
-            showManufacturerButton.Click += showManufacturerButton_Click;
+            statusUserLabel.Alignment = ToolStripItemAlignment.Right;
+            statusUserLabel.BackColor = Color.White;
+            statusUserLabel.BorderStyle = BorderStyle.None;
+            statusUserLabel.Enabled = false;
+            statusUserLabel.Margin = new Padding(1, 0, 15, 0);
+            statusUserLabel.Name = "statusUserLabel";
+            statusUserLabel.Overflow = ToolStripItemOverflow.Never;
+            statusUserLabel.ReadOnly = true;
+            statusUserLabel.Size = new Size(160, 24);
+            statusUserLabel.Text = "User Status";
+            statusUserLabel.TextBoxTextAlign = HorizontalAlignment.Right;
             // 
-            // actionsGroupBox
+            // mainPanel
             // 
-            actionsGroupBox.Controls.Add(addBikeButton);
-            actionsGroupBox.Controls.Add(addManufacturerButton);
-            actionsGroupBox.Controls.Add(addUserButton);
-            actionsGroupBox.Location = new Point(12, 486);
-            actionsGroupBox.Name = "actionsGroupBox";
-            actionsGroupBox.Size = new Size(239, 177);
-            actionsGroupBox.TabIndex = 6;
-            actionsGroupBox.TabStop = false;
-            actionsGroupBox.Text = "Actions";
-            // 
-            // addBikeButton
-            // 
-            addBikeButton.Location = new Point(6, 34);
-            addBikeButton.Name = "addBikeButton";
-            addBikeButton.Size = new Size(227, 40);
-            addBikeButton.TabIndex = 2;
-            addBikeButton.Text = "Add Bike";
-            addBikeButton.UseVisualStyleBackColor = true;
-            addBikeButton.Click += addBikeButton_Click;
-            // 
-            // addManufacturerButton
-            // 
-            addManufacturerButton.Location = new Point(6, 80);
-            addManufacturerButton.Name = "addManufacturerButton";
-            addManufacturerButton.Size = new Size(227, 40);
-            addManufacturerButton.TabIndex = 1;
-            addManufacturerButton.Text = "Add Manufacturer";
-            addManufacturerButton.UseVisualStyleBackColor = true;
-            addManufacturerButton.Click += addManufacturerButton_Click;
-            // 
-            // addUserButton
-            // 
-            addUserButton.Location = new Point(6, 126);
-            addUserButton.Name = "addUserButton";
-            addUserButton.Size = new Size(227, 40);
-            addUserButton.TabIndex = 0;
-            addUserButton.Text = "Add User";
-            addUserButton.UseVisualStyleBackColor = true;
-            addUserButton.Click += addUserButton_Click;
+            mainPanel.AutoSize = true;
+            mainPanel.Dock = DockStyle.Fill;
+            mainPanel.Location = new Point(0, 26);
+            mainPanel.Margin = new Padding(2);
+            mainPanel.Name = "mainPanel";
+            mainPanel.Size = new Size(684, 310);
+            mainPanel.TabIndex = 8;
             // 
             // Dashboard
             // 
-            AutoScaleDimensions = new SizeF(12F, 30F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1200, 675);
-            Controls.Add(actionsGroupBox);
-            Controls.Add(showRenterButton);
-            Controls.Add(showManufacturerButton);
-            Controls.Add(bikeAvailabilityFilterLabel);
-            Controls.Add(bikeAvailabilityFilterComboBox);
-            Controls.Add(dataGridMain);
-            Controls.Add(TablesList);
-            Margin = new Padding(4);
+            ClientSize = new Size(684, 336);
+            Controls.Add(mainPanel);
+            Controls.Add(menuStrip);
+            MainMenuStrip = menuStrip;
+            Margin = new Padding(2);
             Name = "Dashboard";
             Text = "Dashboard";
             Load += Dashboard_Load;
-            ((System.ComponentModel.ISupportInitialize)dataGridMain).EndInit();
-            actionsGroupBox.ResumeLayout(false);
+            menuStrip.ResumeLayout(false);
+            menuStrip.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
-
-        private ListBox TablesList;
-        private DataGridView dataGridMain;
-        private ComboBox bikeAvailabilityFilterComboBox;
-        private Label bikeAvailabilityFilterLabel;
-        private Button showRenterButton;
-        private Button showManufacturerButton;
-        private GroupBox actionsGroupBox;
-        private Button addBikeButton;
-        private Button addManufacturerButton;
-        private Button addUserButton;
+        private MenuStrip menuStrip;
+        private ToolStripMenuItem bikesMenuItem;
+        private ToolStripMenuItem manufacturersMenuItem;
+        private ToolStripMenuItem loginMenuItem;
+        private Panel mainPanel;
+        private ToolStripMenuItem logoutMenuItem;
+        private ToolStripTextBox statusUserLabel;
     }
 }

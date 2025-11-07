@@ -37,7 +37,6 @@ public class Bike {
 
     private Integer currentRenter_id;
     private Date rentDate;
-    private Integer rentTime; //hours
 
     public enum BikeStatus{
         AVAILABLE,

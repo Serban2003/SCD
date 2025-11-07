@@ -46,4 +46,10 @@ public class BikeController {
         bikeService.deleteBike(id);
         return ResponseEntity.noContent().build();
     }
+    @GetMapping("/rented/{user_id}")
+    public ResponseEntity<List<Bike>> getUserRentedBikes(@PathVariable Integer user_id) {
+        List<Bike> bikes = bikeService.getRentedBikesByUser(user_id);
+        return ResponseEntity.ok(bikes);
+    }
+
 }

@@ -44,4 +44,8 @@ public class BikeService {
 
         return bikeRepository.save(existingBike);
     }
+    public List<Bike> getRentedBikesByUser(Integer user_id) {
+        return bikeRepository.findRentedBikesByUser(user_id);
+    }
+
 }

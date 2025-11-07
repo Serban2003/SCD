@@ -1,6 +1,8 @@
 package com.example.BikeRental.UserUtils;
 
+import com.example.BikeRental.BikeUtils.Bike;
 import jakarta.transaction.Transactional;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import java.util.List;
@@ -48,4 +50,14 @@ public class UserService {
 
         return userRepository.save(existingUser);
     }
+
+    public User login(String email, String rawPassword) {
+        User user = userRepository.findByEmail(email)
+                .orElseThrow(() -> new BadCredentialsException("Invalid email or password."));
+        if (!passwordEncoder.matches(rawPassword, user.getPassword())) {
+            throw new BadCredentialsException("Invalid email or password.");
+        }
+        return user;
+    }
+
 }

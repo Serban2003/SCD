@@ -1,6 +1,9 @@
-INSERT INTO users (firstname, lastname, email, password) VALUES
-('Iustinian', 'Serban',  'iustinianserban@gmail.com', '$2a$12$rxvR7u.kH7bJcSpGzZMLoOPH5jDBcGsy20sO3z9KPh9bQlkaVhP.q'),
-('Flaviu',    'Chitulea','flaviu.chitulea@example.com', '$2a$12$R14WnZtX9jSdnrzU4YkF..3dOf8MchmL2zQ9EIQppCeo9M1JRRpRq'),
-('Liviu',     'Cristea', 'liviu.cristea@example.com',    '$2a$12$zTRtkR/8l63f8BdyySmBG.LOnYzFA06aW7BtYkAjP9boX3.I1zNq.'),
-('Mihai',     'Pop',     'mihai.pop@example.com',        '$2a$12$KWxvH9EvPSH1xj28Z0ZteOHpU0RWzPZ7dMhdXZrQQ1eJ4C1Y6mUem'),
-('Daniela',   'Soare',   'daniela.soare@outlook.ro',     '$2a$12$s38LAsAzlfPDAHnUujrTAOFrzvRhePD5cMxd8znI1VPS7pUkk2FZa');
+INSERT INTO users (email, firstname, lastname, password) VALUES ('iustinianserban@gmail.com', 'Iustinian', 'Serban', '$2a$10$lKmwXEj9JWvwd4R/4MGJG.oVmZmZ6usM/LTGrpFLCouItGSUlsHRe'); 
+INSERT INTO bikerentalbd.users (email, firstname, lastname, password) VALUES ('flaviu.chitulea@example.com', 'Flaviu', 'Chitulea', '$2a$10$n6CX.HTsLEgpF2gZdTtO.OicR0h/iIT5rpI0ey0kKune6Xnx1APna');
+INSERT INTO bikerentalbd.users (email, firstname, lastname, password) VALUES ('liviu.cristea@example.com', 'Liviu', 'Cristea', '$2a$10$crsIMsfZG1FHlfbUQzKvtuzIEKunfKB3IEbTrGoDZG3hkJUpl6Mmy');
+INSERT INTO bikerentalbd.users (email, firstname, lastname, password) VALUES ('mihai.pop@example.com', 'Mihai', 'Pop', '$2a$10$Z7bko6WiFqAGrhQ8/Jc6Me.jLsaEu7REEQKnLzsOOdPLwcDUKUTBe');
+INSERT INTO bikerentalbd.users (email, firstname, lastname, password) VALUES ('daniela.soare@outlook.ro', 'Daniela', 'Soare', '$2a$10$lteTtpsyekXpCQQo5FurI.OluP/fbsBkO/WffWJZg6bmdUDnVGqdG');
+INSERT INTO bikerentalbd.users (email, firstname, lastname, password) VALUES ('andreea.balcon@yahoo.com', 'Andreea', 'Balcon', '$2a$12$n/rDJvMjW2jzrUAc9/2MheenzcG9AvMsm24CeXgSyUKxYWXMkcPu2');
+INSERT INTO bikerentalbd.users (email, firstname, lastname, password) VALUES ('daniel.ursuz@gmail.com', 'Daniel', 'Ursuz', '$2a$10$iDA3HduVb3q3j2DNj2ymkOobSdDlSgYDR6HN/XXUcIomaR4z1XqHS');
+
+#password is lowercase firstname

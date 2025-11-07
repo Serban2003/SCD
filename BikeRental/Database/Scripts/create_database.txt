@@ -22,7 +22,6 @@ CREATE TABLE IF NOT EXISTS bikes (
   status VARCHAR(20) NOT NULL,
   current_renter_id INT NULL,
   rent_date DATETIME NULL,
-  rent_time INT NULL
 ) ENGINE=InnoDB;
 
 ALTER TABLE bikes

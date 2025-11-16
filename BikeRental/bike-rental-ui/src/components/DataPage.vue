@@ -1,203 +1,448 @@
+<script setup lang="ts">
+import { ref, computed, watch } from 'vue'
+import DataGrid from '@/components/DataGrid.vue'
+import DialogForm from '@/components/DialogForm.vue'
+
+const props = withDefaults(
+  defineProps<{
+    title: string
+    headers: any[]
+    idKey?: string
+    loading?: boolean
+    create: (data: any) => Promise<any> | any
+    update: (id: any, data: any) => Promise<any> | any
+    remove: (id: any) => Promise<any> | any
+
+    bikes?: any[]
+    manufacturers?: any[]
+    users?: any[]
+    filters?: any[]
+  }>(),
+  {
+    idKey: 'id',
+    loading: false,
+    bikes: () => [],
+    manufacturers: () => [],
+    users: () => [],
+    filters: () => [],
+  },
+)
+
+const emit = defineEmits<{
+  (e: 'refresh'): void
+}>()
+
+// Selected row in the data grid
+const selected = ref<any | null>(null)
+
+// Dialog state and mode (add vs. edit)
+const dialog = ref({
+  open: false,
+  editing: false,
+})
+
+// Global error and saving flag for CRUD operations
+const error = ref<string | null>(null)
+const saving = ref(false)
+
+// Active values for all filters (selects, ranges, text fields)
+const activeFilters = ref<Record<string, any>>({})
+
+// Initialize filter values whenever the filter configuration changes
+watch(
+  () => props.filters,
+  filters => {
+    if (!filters) return
+    const defaults: Record<string, any> = {}
+
+    filters.forEach(f => {
+      if (f.type === 'select') {
+        defaults[f.key] = 'ALL'
+      } else if (f.type === 'range') {
+        defaults[f.key] = [f.min, f.max]
+      } else {
+        defaults[f.key] = ''
+      }
+    })
+
+    activeFilters.value = defaults
+  },
+  { immediate: true },
+)
+
+// Lookup map for manufacturer labels in bikes mode
+const manufacturerMap = computed(
+  () =>
+    new Map(
+      (props.manufacturers ?? []).map((m: any) => [m.manufacturer_id, m.name]),
+    ),
+)
+
+// Lookup map for renter labels in bikes mode
+const renterMap = computed(
+  () =>
+    new Map(
+      (props.users ?? []).map((u: any) => [
+        u.user_id,
+        `${u.firstname ?? ''} ${u.lastname ?? ''}`.trim() || u.email,
+      ]),
+    ),
+)
+
+// Build the items dataset for the grid (bikes mode or users/generic mode) and apply filters
+const itemsForGrid = computed(() => {
+  let base: any[] = []
+
+  // Bikes mode: normalize fields and enrich with display names
+  if (props.bikes && props.bikes.length > 0) {
+    base = props.bikes.map((item: any) => {
+      const normalized: Record<string, any> = {}
+
+      for (const [key, value] of Object.entries(item as Record<string, any>)) {
+        if (value instanceof Date) {
+          normalized[key] = value.toISOString().slice(0, 16)
+        } else {
+          normalized[key] = value
+        }
+      }
+
+      const mid = item.manufacturer_id
+      normalized.manufacturerName =
+        manufacturerMap.value.get(mid) ?? `#${mid}`
+
+      const rid = item.currentRenter_id
+      normalized.renterName = rid
+        ? renterMap.value.get(rid) ?? `#${rid}`
+        : '—'
+
+      return normalized
+    })
+  }
+  // Users or other entities: simple normalization of date fields
+  else if (props.users && props.users.length > 0) {
+    base = props.users.map((item: any) => {
+      const normalized: Record<string, any> = {}
+
+      for (const [key, value] of Object.entries(item as Record<string, any>)) {
+        if (value instanceof Date) {
+          normalized[key] = value.toISOString().slice(0, 16)
+        } else {
+          normalized[key] = value
+        }
+      }
+
+      return normalized
+    })
+  } else {
+    return []
+  }
+
+  // Apply all configured filters on the client side
+  if (props.filters && props.filters.length > 0) {
+    base = base.filter(row => {
+      return props.filters!.every(filter => {
+        const val = activeFilters.value[filter.key]
+
+        // No active value → ignore this filter
+        if (
+          val === undefined ||
+          val === null ||
+          val === '' ||
+          val === 'ALL'
+        ) {
+          return true
+        }
+
+        // Numeric range filters (e.g., year, price)
+        if (filter.type === 'range') {
+          if (!Array.isArray(val) || val.length !== 2) return true
+          const [min, max] = val
+          if (min == null || max == null) return true
+          const num = Number(row[filter.key])
+          if (Number.isNaN(num)) return false
+          return num >= min && num <= max
+        }
+
+        // Discrete select filters (e.g., status, manufacturer)
+        if (filter.type === 'select') {
+          return row[filter.key] === val
+        }
+
+        // Text filters (contains search, case-insensitive)
+        if (filter.type === 'text') {
+          return String(row[filter.key] ?? '')
+            .toLowerCase()
+            .includes(String(val).toLowerCase())
+        }
+
+        return true
+      })
+    })
+  }
+
+  return base
+})
+
+// Reset filters to their default values (ALL / full range / empty text)
+function refreshFilters() {
+  const defaults: Record<string, any> = {}
+
+  props.filters?.forEach(f => {
+    if (f.type === 'select') {
+      defaults[f.key] = 'ALL'
+    } else if (f.type === 'range') {
+      defaults[f.key] = [f.min, f.max]
+    } else {
+      defaults[f.key] = ''
+    }
+  })
+
+  activeFilters.value = defaults
+}
+
+// Optional manual hook for filter changes (if needed from child components)
+function onFilterChange(filter: any, value: any) {
+  activeFilters.value[filter.key] = value
+}
+
+// Infer form field metadata from headers and sample item
+const autoColumns = computed(() => {
+  if (!itemsForGrid.value || itemsForGrid.value.length === 0) return []
+
+  const sample = itemsForGrid.value[0] as Record<string, any>
+
+  return Object.keys(sample)
+    .filter(
+      key =>
+        key !== props.idKey &&
+        key !== 'manufacturerName' &&
+        key !== 'renterName',
+    )
+    .map(key => {
+      const value = sample[key]
+      let type: string = 'text'
+
+      if (typeof value === 'number') type = 'number'
+      if (key.toLowerCase().includes('date')) type = 'date'
+      if (key.toLowerCase() === 'year') type = 'year'
+
+      // Explicit overrides for bikes domain
+      if (key === 'price') type = 'float'
+      if (key === 'status') type = 'select'
+      if (key === 'manufacturer_id') type = 'manufacturer'
+      if (key === 'currentRenter_id') type = 'user'
+
+      const headerMeta = props.headers.find(h => h.key === key)
+      const required = headerMeta?.required ?? false
+      const label =
+        headerMeta?.title ??
+        key
+          .replace(/_/g, ' ')
+          .replace(/\b\w/g, (c: string) => c.toUpperCase())
+
+      return {
+        key,
+        label,
+        type,
+        required,
+        options:
+          key === 'status'
+            ? [
+                { label: 'Available', value: 'AVAILABLE' },
+                { label: 'Rented', value: 'RENTED' },
+                { label: 'Maintenance', value: 'MAINTENANCE' },
+              ]
+            : undefined,
+      }
+    })
+})
+
+// Trigger data reload in the parent component
+function refresh() {
+  error.value = null
+  emit('refresh')
+}
+
+// Open dialog in "create" mode
+function openAdd() {
+  error.value = null
+  dialog.value.open = true
+  dialog.value.editing = false
+  selected.value = null
+}
+
+// Open dialog in "edit" mode for the selected row
+function openEdit() {
+  if (!selected.value) return
+  error.value = null
+  dialog.value.open = true
+  dialog.value.editing = true
+}
+
+// Delete the currently selected item
+async function onDelete() {
+  if (!selected.value) return
+  error.value = null
+
+  try {
+    saving.value = true
+    const id = (selected.value as any)[props.idKey]
+    await props.remove(id)
+    selected.value = null
+  } catch (err: any) {
+    error.value = err?.message ?? 'Failed to delete item'
+  } finally {
+    saving.value = false
+  }
+}
+
+// Persist changes from the dialog (create or update)
+async function saveDraft(payload: any) {
+  error.value = null
+
+  try {
+    saving.value = true
+
+    if (dialog.value.editing && selected.value) {
+      const id = (selected.value as any)[props.idKey]
+      await props.update(id, payload)
+    } else {
+      await props.create(payload)
+    }
+
+    dialog.value.open = false
+  } catch (err: any) {
+    error.value = err?.message ?? 'Failed to save item'
+  } finally {
+    saving.value = false
+  }
+}
+
+// Close the dialog without saving
+function closeDialog() {
+  dialog.value.open = false
+}
+</script>
+
 <template>
   <section class="pa-4 d-flex flex-column ga-4">
+    <!-- Page header: title and CRUD actions -->
     <div class="d-flex align-center justify-space-between">
       <h1 class="text-h5 ma-0">{{ title }} Dashboard</h1>
+
       <div class="d-flex ga-2">
-        <v-btn variant="text" @click="refresh" :loading="loading">Refresh</v-btn>
-        <v-btn color="primary" @click="openAdd">Add</v-btn>
-        <v-btn :disabled="!selected" @click="openEdit">Update</v-btn>
-        <v-btn color="error" :disabled="!selected" @click="onDelete">Delete</v-btn>
+        <v-btn variant="text" @click="refresh" :loading="loading">
+          <v-icon start>mdi-refresh</v-icon>
+          Refresh
+        </v-btn>
+
+        <v-btn color="deep-orange-darken-2" @click="openAdd">
+          <v-icon start>mdi-plus</v-icon>
+          Add
+        </v-btn>
+
+        <v-btn color="info" :disabled="!selected" @click="openEdit">
+          <v-icon start>mdi-pencil</v-icon>
+          Update
+        </v-btn>
+
+        <v-btn
+          style="background-color: #d32f2f; color: white;"
+          variant="flat"
+          :disabled="!selected"
+          @click="onDelete"
+        >
+          <v-icon>mdi-delete</v-icon>
+          Delete
+        </v-btn>
+      </div>
+    </div>
+
+    <!-- Filter controls row -->
+    <div
+      v-if="filters && filters.length"
+      class="d-flex align-center ga-6 flex-wrap"
+    >
+      <div
+        v-for="filter in filters"
+        :key="filter.key"
+        class="d-flex flex-column align-center"
+      >
+        <label :for="`filter-${filter.key}`" class="text-subtitle-2 mb-1">
+          {{ filter.label }}
+        </label>
+
+        <!-- Select-based filters (status, manufacturer, etc.) -->
+        <v-select
+          v-if="filter.type === 'select'"
+          :id="`filter-${filter.key}`"
+          :items="filter.options"
+          item-title="label"
+          item-value="value"
+          v-model="activeFilters[filter.key]"
+          density="compact"
+          hide-details="auto"
+          color="deep-orange-darken-2"
+          style="width: 180px;"
+        />
+
+        <!-- Range-based filters (year, price, etc.) -->
+        <v-range-slider
+          v-else-if="filter.type === 'range'"
+          :id="`filter-${filter.key}`"
+          v-model="activeFilters[filter.key]"
+          :min="filter.min"
+          :max="filter.max"
+          :step="filter.step || 1"
+          density="compact"
+          hide-details
+          thumb-label="always"
+          style="width: 260px;"
+          thumb-color="deep-orange-darken-2"
+          track-fill-color="deep-orange-lighten-2"
+          track-color="rgb(73, 69, 79)"
+        />
       </div>
     </div>
 
     <v-alert v-if="error" type="error" variant="tonal" :text="error" />
     <v-progress-linear v-if="loading" indeterminate />
 
+    <!-- Main data grid -->
     <DataGrid
-      v-else
       :headers="headers"
-      :items="sortedFiltered"
+      :items="itemsForGrid"
       :loading="loading"
-      :items-per-page="10"
-      :sort-by="initialSort"
       :item-key="idKey"
+      :items-per-page="15"
       v-model:selected="selected"
-      @row:click="() => {}">
-    </DataGrid>
+    />
 
-    <v-dialog v-model="dialog.open" max-width="720">
-      <v-card>
-        <v-card-title>{{ dialog.editing ? 'Update' : 'Add' }} entry</v-card-title>
-        <v-divider />
-        <v-card-text>
-          <v-form ref="formRef" v-model="formValid" validate-on="blur">
-            <div class="d-grid ga-3" style="grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));">
-              <div v-for="f in fields" :key="f.key">
-                <v-text-field
-                  v-if="!f.type || f.type==='text' || f.type==='number'"
-                  v-model="draft[f.key]" :type="f.type || 'text'" :label="f.label"
-                  :rules="f.required ? [req] : []" hide-details="auto" density="comfortable" />
-                <v-select
-                  v-else-if="f.type==='select'"
-                  v-model="draft[f.key]" :items="f.options || []" item-title="label" item-value="value"
-                  :label="f.label" :rules="f.required ? [req] : []" hide-details="auto" density="comfortable" />
-                <v-text-field
-                  v-else-if="f.type==='datetime'"
-                  v-model="draft[f.key]" type="datetime-local" :label="f.label"
-                  :rules="f.required ? [req] : []" hide-details="auto" density="comfortable" />
-                <v-textarea
-                  v-else-if="f.type==='textarea'"
-                  v-model="draft[f.key]" :label="f.label" :rules="f.required ? [req] : []"
-                  rows="3" hide-details="auto" density="comfortable" />
-                <slot v-else :name="`field:${f.key}`" :draft="draft" :field="f" />
-              </div>
-            </div>
-          </v-form>
-        </v-card-text>
-        <v-divider />
-        <v-card-actions class="justify-end">
-          <v-btn variant="text" @click="closeDialog">Cancel</v-btn>
-          <v-btn color="primary" :loading="saving" @click="saveDraft">{{ dialog.editing ? 'Save' : 'Create' }}</v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-dialog>
+    <!-- Add / edit dialog -->
+    <DialogForm
+      :title="title"
+      v-model="dialog.open"
+      :editing="dialog.editing"
+      :fields="autoColumns"
+      :modelData="selected"
+      :saving="saving"
+      :manufacturers="props.manufacturers"
+      :users="props.users"
+      @save="saveDraft"
+      @cancel="closeDialog"
+    />
   </section>
 </template>
 
-<script setup lang="ts">
-import { ref, reactive, watch, computed, onMounted } from 'vue'
-import DataGrid from '@/components/DataGrid.vue'
-
-export type Column = { key: string; label: string }
-export type SelectOption = { value: string | number; label: string }
-export type Field = { key: string; label: string; type?: 'text'|'number'|'select'|'datetime'|'textarea'; required?: boolean; options?: SelectOption[] }
-
-const props = defineProps<{
-    title: string
-    list: () => Promise<any[]>
-    create: (data: any) => Promise<any>
-    update: (id: string|number, data: any) => Promise<any>
-    remove: (id: string|number) => Promise<void>
-    columns: Column[]
-    fields: Field[]
-    idKey?: string
-}>()
-
-const idKey = computed(() => props.idKey ?? 'id')
-
-// state
-const loading = ref(false)
-const saving  = ref(false)
-const error   = ref<string | null>(null)
-const rows    = ref<any[]>([])
-const selected = ref<any | null>(null)
-const search = ref(''); const appliedSearch = ref('')
-const sort = reactive<{ key: string | null; asc: boolean }>({ key: null, asc: true })
-
-// headers for DataGrid
-const headers = computed(() => props.columns.map(c => ({ title: c.label, key: c.key, sortable: true })))
-const initialSort = computed(() => sort.key ? [{ key: sort.key!, order: sort.asc ? 'asc' : 'desc' }] : [])
-
-const sortedFiltered = computed(() => {
-  let data = rows.value.slice()
-  if (appliedSearch.value) {
-    const q = appliedSearch.value.toLowerCase()
-    data = data.filter(r => Object.values(r).some(v => String(v ?? '').toLowerCase().includes(q)))
-  }
-  if (sort.key) {
-    const k = sort.key, dir = sort.asc ? 1 : -1
-    data.sort((a, b) => {
-      const va = a[k as string], vb = b[k as string]
-      if (va == null && vb == null) return 0
-      if (va == null) return 1
-      if (vb == null) return -1
-      if (typeof va === 'number' && typeof vb === 'number') return (va - vb) * dir
-      return String(va).localeCompare(String(vb)) * dir
-    })
-  }
-  return data
-})
-
-function applySearch() { appliedSearch.value = search.value }
-function clearSearch()  { search.value = ''; appliedSearch.value = '' }
-function refresh()      { fetchList() }
-
-const req = (v: any) => (v === undefined || v === null || v === '' ? 'Required' : true)
-
-async function fetchList() {
-  loading.value = true
-  error.value = null
-  try {
-    const res = await fetch(props.endpoint)
-    if (!res.ok) throw new Error(`GET ${props.endpoint} -> ${res.status}`)
-    rows.value = await res.json()
-  } catch (e: any) {
-    error.value = e?.message ?? 'Failed to load data.'
-  } finally {
-    loading.value = false
-  }
+<style>
+/* Position slider thumb labels with reduced visual emphasis */
+.v-slider-thumb__label {
+  opacity: 0.5;
 }
 
-// dialog / form
-const dialog = reactive({ open: false, editing: false })
-const draft  = reactive<Record<string, any>>({})
-const formRef = ref(); const formValid = ref(false)
-
-function openAdd() {
-  dialog.open = true; dialog.editing = false
-  Object.keys(draft).forEach(k => delete draft[k])
-  for (const f of props.fields) draft[f.key] = ''
+/* Adjust slider thumb label arrow orientation and offset */
+.v-slider-thumb__label::after {
+  transform: rotate(280deg);
+  top: 20px;
 }
-function openEdit() {
-  if (!selected.value) return
-  dialog.open = true; dialog.editing = true
-  Object.keys(draft).forEach(k => delete draft[k])
-  Object.assign(draft, selected.value)
-}
-function closeDialog() { dialog.open = false }
-
-async function saveDraft() {
-  const form = formRef.value as any
-  const ok = await form?.validate?.()
-  if (ok && ok.valid === false) return
-  try {
-    saving.value = true
-    if (dialog.editing) await updateItem()
-    else await createItem()
-    dialog.open = false
-    await fetchList()
-  } catch (e: any) {
-    error.value = e?.message || 'Operation failed'
-  } finally {
-    saving.value = false
-  }
-}
-
-async function createItem() {
-  const body = { ...draft }; delete body[idKey.value]
-  const res = await fetch(props.endpoint, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) })
-  if (!res.ok) throw new Error(`POST ${props.endpoint} -> ${res.status}`)
-}
-async function updateItem() {
-  const id = selected.value?.[idKey.value]; if (id == null) return
-  const url = `${props.endpoint}/${encodeURIComponent(String(id))}`
-  const res = await fetch(url, { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(draft) })
-  if (!res.ok) throw new Error(`PUT ${url} -> ${res.status}`)
-}
-async function onDelete() {
-  const id = selected.value?.[idKey.value]; if (id == null) return
-  if (!confirm('Delete selected entry?')) return
-  const url = `${props.endpoint}/${encodeURIComponent(String(id))}`
-  const res = await fetch(url, { method: 'DELETE' })
-  if (!res.ok) { error.value = `DELETE ${url} -> ${res.status}`; return }
-  selected.value = null
-  await fetchList()
-}
-
-onMounted(fetchList)
-watch(() => props.endpoint, fetchList)
-</script>
-
-<style scoped>
-.filter-input { min-width: 260px; }
 </style>

@@ -1,35 +1,75 @@
-const BASE_URL = import.meta.env.VITE_API_URL ?? '/api';
+/**
+ * Base backend URL for all API requests.
+ */
+const BASE_URL = "http://localhost:8083";
 
-function resolve(url: string) {
-  return url.startsWith('http') ? url : `${BASE_URL}${url}`;
+/**
+ * Ensures absolute URLs; relative paths are prefixed automatically.
+ */
+function resolve(url: string): string {
+  return url.startsWith("http") ? url : `${BASE_URL}${url}`;
 }
 
+/**
+ * Core request wrapper around Fetch API.
+ * Handles:
+ *  - JSON encoding
+ *  - typed responses
+ *  - auth token insertion
+ *  - error propagation
+ *  - 204 No Content
+ */
 async function request<T>(url: string, init?: RequestInit): Promise<T> {
-  const token = localStorage.getItem('token'); // or wherever you store it
+  const token = localStorage.getItem("token");
+
   const res = await fetch(resolve(url), {
     ...init,
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
       ...(token ? { Authorization: `Bearer ${token}` } : {}),
-      ...init?.headers,
+      ...init?.headers, // allow override
     },
   });
 
+  // Error handling with diagnostic details from server
   if (!res.ok) {
-    const text = await res.text().catch(() => '');
+    const text = await res.text().catch(() => "");
     throw new Error(`${res.status} ${res.statusText} on ${url}: ${text}`);
   }
-  // 204 No Content support
-  if (res.status === 204) return undefined as T;
+
+  // Support empty responses (DELETE, PUT)
+  if (res.status === 204) {
+    return undefined as T;
+  }
+
   return res.json() as Promise<T>;
 }
 
+/**
+ * Lightweight HTTP client abstraction.
+ * Each method returns a typed Promise<T>.
+ */
 export const http = {
+  /**
+   * Perform a GET request.
+   */
   get: <T>(url: string) => request<T>(url),
+
+  /**
+   * Perform a POST request with optional JSON body.
+   */
   post: <T>(url: string, body?: unknown) =>
-    request<T>(url, { method: 'POST', body: JSON.stringify(body) }),
-  put:  <T>(url: string, body?: unknown) =>
-    request<T>(url, { method: 'PUT', body: JSON.stringify(body) }),
-  del:  <T>(url: string) =>
-    request<T>(url, { method: 'DELETE' }),
+    request<T>(url, { method: "POST", body: JSON.stringify(body) }),
+
+  /**
+   * Perform a PUT request with optional JSON body.
+   */
+  put: <T>(url: string, body?: unknown) =>
+    request<T>(url, { method: "PUT", body: JSON.stringify(body) }),
+
+  /**
+   * Perform a DELETE request.
+   */
+  del: <T>(url: string) =>
+    request<T>(url, { method: "DELETE" }),
 };

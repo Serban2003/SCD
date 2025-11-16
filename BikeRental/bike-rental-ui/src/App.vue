@@ -1,8 +1,8 @@
 <!-- src/App.vue -->
 <template>
   <v-app>
-    <v-layout>
-      <v-navigation-drawer permanent color="primary" :width="220">
+    <v-layout style="background-color: #212121;">
+      <v-navigation-drawer permanent color="deep-orange-darken-2" :width="220">
         <v-list-item title="BikeRental" subtitle="Web UI" />
         <v-divider />
         <v-list nav>
@@ -12,10 +12,11 @@
         </v-list>
       </v-navigation-drawer>
 
-      <v-main>
+      <v-main class="pb-8">
         <router-view />
       </v-main>
     </v-layout>
+    <app-footer />
   </v-app>
 </template>
 

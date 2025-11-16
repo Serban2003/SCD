@@ -179,8 +179,6 @@ async function send() {
   overflow-y: auto;
   max-height: 100%;
 }
-
-/* Optional: slightly different radiuses for user vs assistant */
 .user-bubble {
   border-bottom-right-radius: 0;
 }

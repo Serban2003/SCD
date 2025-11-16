@@ -1,0 +1,24 @@
+@startuml ComponentDiagram
+skinparam componentStyle rectangle
+
+actor "Client" as Client
+actor "Administrator" as Admin
+
+component "WPF Client App" as WPF
+component "Web  UI\n(Vue.js)" as WebUI
+component "Backend\n(Spring Boot REST API)" as Backend
+component "Local Llama Model\n(Ollama)" as Llama
+database "Database\n(MySQL)" as DB
+
+Client --> WPF
+Admin --> WebUI
+
+WPF --> Backend : REST API\n(HTTP / JSON)
+WebUI --> Backend : REST API\n(HTTP / JSON)
+
+Backend --> DB : SQL Queries\n
+
+Backend --> Llama : HTTP Request\n(/api/chat)
+Llama --> Backend : AI Response\n(JSON)
+
+@enduml

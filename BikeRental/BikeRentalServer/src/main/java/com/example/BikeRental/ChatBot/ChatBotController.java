@@ -18,7 +18,7 @@ public class ChatBotController {
             return ResponseEntity.badRequest()
                     .body(new ChatResponse("Message cannot be empty."));
         }
-        
+
         String answer = chatBotService.callOllama(request.getMessage()).block();
 
         if (answer == null) {

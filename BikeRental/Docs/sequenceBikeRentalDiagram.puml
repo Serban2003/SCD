@@ -1,0 +1,63 @@
+@startuml SequenceBikeRentalDiagram
+actor User as U
+
+participant "WPF Client App" as WPF
+participant "Backend\n(Spring Boot API)" as Backend
+database "Database" as DB
+
+title Bike Rental Flow: Register/Login, View Bikes, Rent, Return
+
+== Start: Open client ==
+
+U -> WPF : Open application
+
+alt Existing user - Login
+    U -> WPF : Enter credentials\n(username, password)
+    WPF -> Backend : POST /login\n(credentials)
+    Backend -> DB : SELECT * FROM users\nWHERE email = ?
+    DB --> Backend : User record\n(or none)
+    
+    alt Valid credentials
+        Backend --> WPF : Login success\n(user info)
+        WPF --> U : Show main screen\n(logged in)
+    else Invalid credentials
+        Backend --> WPF : Login failed\n(error message)
+        WPF --> U : Show error
+    end
+else New user - Register
+    U -> WPF : Fill in registration form
+    WPF -> Backend : POST /register\n(user data)
+    Backend -> DB : INSERT INTO users\n(new user)
+    DB --> Backend : OK
+    Backend --> WPF : Registration success\n(user info)
+    WPF --> U : Show main screen\n(logged in)
+end
+
+== View bikes ==
+
+U -> WPF : Open bikes list
+WPF -> Backend : GET /bikes
+Backend -> DB : SELECT * FROM bikes
+DB --> Backend : List of bikes
+Backend --> WPF : Bikes list (JSON)
+WPF --> U : Display bikes\n(table/list)
+
+== Rent a bike ==
+
+U -> WPF : Select a bike\nand click "Rent"
+WPF -> Backend : POST /bikes/{id}\n(bike)
+Backend -> DB : UPDATE bike entity\n(full update via ORM)
+DB --> Backend : OK
+Backend --> WPF : Rental confirmed
+WPF --> U : Show success message\nand updated status
+
+== Some time later - Return bike ==
+
+U -> WPF : Select bike and choose "Return"
+WPF -> Backend : POST /bikes/{id}\n(bike)
+Backend -> DB : UPDATE bike entity\n(full update via ORM)
+DB --> Backend : OK
+Backend --> WPF : Return confirmed
+WPF --> U : Show success message\nand updated status
+
+@enduml

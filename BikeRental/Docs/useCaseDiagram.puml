@@ -1,0 +1,52 @@
+@startuml UseCaseDiagram
+left to right direction
+skinparam packageStyle rectangle
+skinparam actorStyle awesome
+
+actor "Client" as Client
+actor "Administrator" as Admin
+
+rectangle "BikeRental Backend\n(API + Business Logic)" as Backend {
+    usecase "Login" as UC_Login
+    usecase "Register" as UC_Register
+    usecase "View available bikes" as UC_ViewBikes
+    usecase "Filter bikes" as UC_FilterBikes
+    usecase "Rent a bike" as UC_RentBike
+    usecase "View my rentals" as UC_MyRentals
+    usecase "Return a bike" as UC_ReturnBike
+    usecase "Access AI Chatbot" as UC_ChatbotAccess
+
+    usecase "Manage users" as UC_ManageUsers
+    usecase "Manage bikes" as UC_ManageBikes
+    usecase "Manage manufacturers" as UC_ManageManufacturers
+    usecase "Configure pricing" as UC_SetPrices
+    usecase "View manufacturers" as UC_ViewManufacturers
+}
+
+rectangle "WPF Client App" as WPF {
+}
+
+rectangle "Web UI" as WebAdmin {
+}
+
+' Actors to UI
+Client --> WPF
+Admin --> WebAdmin
+
+' UI to backend
+WPF --> UC_Login
+WPF --> UC_Register
+WPF --> UC_ViewBikes
+WPF --> UC_FilterBikes
+WPF --> UC_RentBike
+WPF --> UC_MyRentals
+WPF --> UC_ReturnBike
+WPF --> UC_ViewManufacturers
+
+
+WebAdmin --> UC_ManageUsers
+WebAdmin --> UC_ManageBikes
+WebAdmin --> UC_ManageManufacturers
+WebAdmin --> UC_SetPrices
+WebAdmin --> UC_ChatbotAccess
+@enduml

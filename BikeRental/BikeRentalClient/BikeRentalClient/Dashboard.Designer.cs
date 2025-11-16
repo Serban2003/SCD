@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Dashboard));
             menuStrip = new MenuStrip();
             bikesMenuItem = new ToolStripMenuItem();
             manufacturersMenuItem = new ToolStripMenuItem();
@@ -46,7 +47,7 @@
             menuStrip.Location = new Point(0, 0);
             menuStrip.Name = "menuStrip";
             menuStrip.Padding = new Padding(4, 1, 0, 1);
-            menuStrip.Size = new Size(684, 26);
+            menuStrip.Size = new Size(1057, 26);
             menuStrip.TabIndex = 7;
             menuStrip.Text = "menuStrip1";
             menuStrip.ItemClicked += menuStrip_ItemClicked;
@@ -91,21 +92,21 @@
             // 
             // mainPanel
             // 
-            mainPanel.AutoSize = true;
             mainPanel.Dock = DockStyle.Fill;
             mainPanel.Location = new Point(0, 26);
             mainPanel.Margin = new Padding(2);
             mainPanel.Name = "mainPanel";
-            mainPanel.Size = new Size(684, 310);
+            mainPanel.Size = new Size(1057, 392);
             mainPanel.TabIndex = 8;
             // 
             // Dashboard
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(684, 336);
+            ClientSize = new Size(1057, 418);
             Controls.Add(mainPanel);
             Controls.Add(menuStrip);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             MainMenuStrip = menuStrip;
             Margin = new Padding(2);
             Name = "Dashboard";
@@ -114,7 +115,6 @@
             menuStrip.ResumeLayout(false);
             menuStrip.PerformLayout();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion

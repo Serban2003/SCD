@@ -1,6 +1,7 @@
 package com.example.BikeRental.UserUtils;
 
 import com.example.BikeRental.BikeUtils.Bike;
+import com.example.BikeRental.BikeUtils.BikeService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

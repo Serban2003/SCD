@@ -31,8 +31,8 @@
                 AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
             });
             
-            manufacturerDataGrid.Width = 1130;
-            manufacturerDataGrid.Height = 570;
+            manufacturerDataGrid.Width = 1030;
+            manufacturerDataGrid.Height = 350;
             manufacturerDataGrid.ColumnHeadersDefaultCellStyle.Font = new Font(manufacturerDataGrid.Font, FontStyle.Bold);
             manufacturerDataGrid.ReadOnly = true;
             manufacturerDataGrid.SelectionMode = DataGridViewSelectionMode.FullRowSelect;

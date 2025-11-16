@@ -3,6 +3,30 @@
   "WorkspaceRootPath": "C:\\Users\\iusti\\Desktop\\Facultate\\An 4\\SCD\\BikeRental\\BikeRentalClient\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{D00AB719-C11A-4D09-8C01-0BB5AB569FDD}|BikeRentalClient\\BikeRentalClient.csproj|C:\\Users\\iusti\\Desktop\\Facultate\\An 4\\SCD\\BikeRental\\BikeRentalClient\\bikerentalclient\\dashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{D00AB719-C11A-4D09-8C01-0BB5AB569FDD}|BikeRentalClient\\BikeRentalClient.csproj|solutionrelative:bikerentalclient\\dashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D00AB719-C11A-4D09-8C01-0BB5AB569FDD}|BikeRentalClient\\BikeRentalClient.csproj|c:\\users\\iusti\\desktop\\facultate\\an 4\\scd\\bikerental\\bikerentalclient\\bikerentalclient\\dashboard.resx||{81828910-B8B3-4D2B-99A3-067027C180C1}",
+      "RelativeMoniker": "D:0:0:{D00AB719-C11A-4D09-8C01-0BB5AB569FDD}|BikeRentalClient\\BikeRentalClient.csproj|solutionrelative:bikerentalclient\\dashboard.resx||{81828910-B8B3-4D2B-99A3-067027C180C1}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D00AB719-C11A-4D09-8C01-0BB5AB569FDD}|BikeRentalClient\\BikeRentalClient.csproj|c:\\users\\iusti\\desktop\\facultate\\an 4\\scd\\bikerental\\bikerentalclient\\bikerentalclient\\bikerentalclient.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{D00AB719-C11A-4D09-8C01-0BB5AB569FDD}|BikeRentalClient\\BikeRentalClient.csproj|solutionrelative:bikerentalclient\\bikerentalclient.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D00AB719-C11A-4D09-8C01-0BB5AB569FDD}|BikeRentalClient\\BikeRentalClient.csproj|c:\\users\\iusti\\desktop\\facultate\\an 4\\scd\\bikerental\\bikerentalclient\\bikerentalclient\\bikerentalclient.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|",
+      "RelativeMoniker": "D:0:0:{D00AB719-C11A-4D09-8C01-0BB5AB569FDD}|BikeRentalClient\\BikeRentalClient.csproj|solutionrelative:bikerentalclient\\bikerentalclient.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D00AB719-C11A-4D09-8C01-0BB5AB569FDD}|BikeRentalClient\\BikeRentalClient.csproj|c:\\users\\iusti\\desktop\\facultate\\an 4\\scd\\bikerental\\bikerentalclient\\bikerentalclient\\manufacturerutils\\manufacturerpanel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D00AB719-C11A-4D09-8C01-0BB5AB569FDD}|BikeRentalClient\\BikeRentalClient.csproj|solutionrelative:bikerentalclient\\manufacturerutils\\manufacturerpanel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D00AB719-C11A-4D09-8C01-0BB5AB569FDD}|BikeRentalClient\\BikeRentalClient.csproj|C:\\Users\\iusti\\Desktop\\Facultate\\An 4\\SCD\\BikeRental\\BikeRentalClient\\bikerentalclient\\manufacturerutils\\manufacturerpanel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{D00AB719-C11A-4D09-8C01-0BB5AB569FDD}|BikeRentalClient\\BikeRentalClient.csproj|solutionrelative:bikerentalclient\\manufacturerutils\\manufacturerpanel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{D00AB719-C11A-4D09-8C01-0BB5AB569FDD}|BikeRentalClient\\BikeRentalClient.csproj|c:\\users\\iusti\\desktop\\facultate\\an 4\\scd\\bikerental\\bikerentalclient\\bikerentalclient\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D00AB719-C11A-4D09-8C01-0BB5AB569FDD}|BikeRentalClient\\BikeRentalClient.csproj|solutionrelative:bikerentalclient\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -11,8 +35,16 @@
       "RelativeMoniker": "D:0:0:{D00AB719-C11A-4D09-8C01-0BB5AB569FDD}|BikeRentalClient\\BikeRentalClient.csproj|solutionrelative:bikerentalclient\\bikeutils\\bikepanel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D00AB719-C11A-4D09-8C01-0BB5AB569FDD}|BikeRentalClient\\BikeRentalClient.csproj|c:\\users\\iusti\\desktop\\facultate\\an 4\\scd\\bikerental\\bikerentalclient\\bikerentalclient\\manufacturerutils\\manufacturerpanel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D00AB719-C11A-4D09-8C01-0BB5AB569FDD}|BikeRentalClient\\BikeRentalClient.csproj|solutionrelative:bikerentalclient\\manufacturerutils\\manufacturerpanel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{D00AB719-C11A-4D09-8C01-0BB5AB569FDD}|BikeRentalClient\\BikeRentalClient.csproj|C:\\Users\\iusti\\Desktop\\Facultate\\An 4\\SCD\\BikeRental\\BikeRentalClient\\bikerentalclient\\bikeutils\\bikepanel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{D00AB719-C11A-4D09-8C01-0BB5AB569FDD}|BikeRentalClient\\BikeRentalClient.csproj|solutionrelative:bikerentalclient\\bikeutils\\bikepanel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D00AB719-C11A-4D09-8C01-0BB5AB569FDD}|BikeRentalClient\\BikeRentalClient.csproj|c:\\users\\iusti\\desktop\\facultate\\an 4\\scd\\bikerental\\bikerentalclient\\bikerentalclient\\manufacturerutils\\manufacturer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D00AB719-C11A-4D09-8C01-0BB5AB569FDD}|BikeRentalClient\\BikeRentalClient.csproj|solutionrelative:bikerentalclient\\manufacturerutils\\manufacturer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D00AB719-C11A-4D09-8C01-0BB5AB569FDD}|BikeRentalClient\\BikeRentalClient.csproj|c:\\users\\iusti\\desktop\\facultate\\an 4\\scd\\bikerental\\bikerentalclient\\bikerentalclient\\dashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D00AB719-C11A-4D09-8C01-0BB5AB569FDD}|BikeRentalClient\\BikeRentalClient.csproj|solutionrelative:bikerentalclient\\dashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{D00AB719-C11A-4D09-8C01-0BB5AB569FDD}|BikeRentalClient\\BikeRentalClient.csproj|c:\\users\\iusti\\desktop\\facultate\\an 4\\scd\\bikerental\\bikerentalclient\\bikerentalclient\\userutils\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -31,20 +63,8 @@
       "RelativeMoniker": "D:0:0:{D00AB719-C11A-4D09-8C01-0BB5AB569FDD}|BikeRentalClient\\BikeRentalClient.csproj|solutionrelative:bikerentalclient\\manufacturerutils\\manufacturerservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D00AB719-C11A-4D09-8C01-0BB5AB569FDD}|BikeRentalClient\\BikeRentalClient.csproj|c:\\users\\iusti\\desktop\\facultate\\an 4\\scd\\bikerental\\bikerentalclient\\bikerentalclient\\manufacturerutils\\manufacturerpanel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{D00AB719-C11A-4D09-8C01-0BB5AB569FDD}|BikeRentalClient\\BikeRentalClient.csproj|solutionrelative:bikerentalclient\\manufacturerutils\\manufacturerpanel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{D00AB719-C11A-4D09-8C01-0BB5AB569FDD}|BikeRentalClient\\BikeRentalClient.csproj|c:\\users\\iusti\\desktop\\facultate\\an 4\\scd\\bikerental\\bikerentalclient\\bikerentalclient\\bikeutils\\bikeservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D00AB719-C11A-4D09-8C01-0BB5AB569FDD}|BikeRentalClient\\BikeRentalClient.csproj|solutionrelative:bikerentalclient\\bikeutils\\bikeservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D00AB719-C11A-4D09-8C01-0BB5AB569FDD}|BikeRentalClient\\BikeRentalClient.csproj|c:\\users\\iusti\\desktop\\facultate\\an 4\\scd\\bikerental\\bikerentalclient\\bikerentalclient\\manufacturerutils\\manufacturer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D00AB719-C11A-4D09-8C01-0BB5AB569FDD}|BikeRentalClient\\BikeRentalClient.csproj|solutionrelative:bikerentalclient\\manufacturerutils\\manufacturer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D00AB719-C11A-4D09-8C01-0BB5AB569FDD}|BikeRentalClient\\BikeRentalClient.csproj|c:\\users\\iusti\\desktop\\facultate\\an 4\\scd\\bikerental\\bikerentalclient\\bikerentalclient\\bikeutils\\bikepanel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{D00AB719-C11A-4D09-8C01-0BB5AB569FDD}|BikeRentalClient\\BikeRentalClient.csproj|solutionrelative:bikerentalclient\\bikeutils\\bikepanel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
       "AbsoluteMoniker": "D:0:0:{D00AB719-C11A-4D09-8C01-0BB5AB569FDD}|BikeRentalClient\\BikeRentalClient.csproj|c:\\users\\iusti\\desktop\\facultate\\an 4\\scd\\bikerental\\bikerentalclient\\bikerentalclient\\bikeutils\\bike.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -58,11 +78,60 @@
       "DocumentGroups": [
         {
           "DockedWidth": 288,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Dashboard.resx",
+              "DocumentMoniker": "C:\\Users\\iusti\\Desktop\\Facultate\\An 4\\SCD\\BikeRental\\BikeRentalClient\\BikeRentalClient\\Dashboard.resx",
+              "RelativeDocumentMoniker": "BikeRentalClient\\Dashboard.resx",
+              "ToolTip": "C:\\Users\\iusti\\Desktop\\Facultate\\An 4\\SCD\\BikeRental\\BikeRentalClient\\BikeRentalClient\\Dashboard.resx",
+              "RelativeToolTip": "BikeRentalClient\\Dashboard.resx",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001005|",
+              "WhenOpened": "2025-11-16T15:47:29.395Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "BikeRentalClient",
+              "DocumentMoniker": "C:\\Users\\iusti\\Desktop\\Facultate\\An 4\\SCD\\BikeRental\\BikeRentalClient\\BikeRentalClient\\BikeRentalClient.csproj",
+              "RelativeDocumentMoniker": "BikeRentalClient\\BikeRentalClient.csproj",
+              "ToolTip": "C:\\Users\\iusti\\Desktop\\Facultate\\An 4\\SCD\\BikeRental\\BikeRentalClient\\BikeRentalClient\\BikeRentalClient.csproj",
+              "RelativeToolTip": "BikeRentalClient\\BikeRentalClient.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAAAOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-11-16T15:44:11.96Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "BikeRentalClient",
+              "DocumentMoniker": "C:\\Users\\iusti\\Desktop\\Facultate\\An 4\\SCD\\BikeRental\\BikeRentalClient\\BikeRentalClient\\BikeRentalClient.csproj",
+              "RelativeDocumentMoniker": "BikeRentalClient\\BikeRentalClient.csproj",
+              "ToolTip": "C:\\Users\\iusti\\Desktop\\Facultate\\An 4\\SCD\\BikeRental\\BikeRentalClient\\BikeRentalClient\\BikeRentalClient.csproj",
+              "RelativeToolTip": "BikeRentalClient\\BikeRentalClient.csproj",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-11-16T15:44:14.101Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "Dashboard.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\iusti\\Desktop\\Facultate\\An 4\\SCD\\BikeRental\\BikeRentalClient\\BikeRentalClient\\Dashboard.cs",
+              "RelativeDocumentMoniker": "BikeRentalClient\\Dashboard.cs",
+              "ToolTip": "C:\\Users\\iusti\\Desktop\\Facultate\\An 4\\SCD\\BikeRental\\BikeRentalClient\\BikeRentalClient\\Dashboard.cs [Design]",
+              "RelativeToolTip": "BikeRentalClient\\Dashboard.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-13T19:55:50.51Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\iusti\\Desktop\\Facultate\\An 4\\SCD\\BikeRental\\BikeRentalClient\\BikeRentalClient\\Program.cs",
               "RelativeDocumentMoniker": "BikeRentalClient\\Program.cs",
@@ -70,12 +139,11 @@
               "RelativeToolTip": "BikeRentalClient\\Program.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAaAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-07T13:16:41.609Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-07T13:16:41.609Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 11,
               "Title": "UserService.cs",
               "DocumentMoniker": "C:\\Users\\iusti\\Desktop\\Facultate\\An 4\\SCD\\BikeRental\\BikeRentalClient\\BikeRentalClient\\UserUtils\\UserService.cs",
               "RelativeDocumentMoniker": "BikeRentalClient\\UserUtils\\UserService.cs",
@@ -83,12 +151,11 @@
               "RelativeToolTip": "BikeRentalClient\\UserUtils\\UserService.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-07T13:15:49.129Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-07T13:15:49.129Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 13,
               "Title": "User.cs",
               "DocumentMoniker": "C:\\Users\\iusti\\Desktop\\Facultate\\An 4\\SCD\\BikeRental\\BikeRentalClient\\BikeRentalClient\\UserUtils\\User.cs",
               "RelativeDocumentMoniker": "BikeRentalClient\\UserUtils\\User.cs",
@@ -96,12 +163,11 @@
               "RelativeToolTip": "BikeRentalClient\\UserUtils\\User.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-07T13:15:45.814Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-07T13:15:45.814Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 14,
               "Title": "ManufacturerService.cs",
               "DocumentMoniker": "C:\\Users\\iusti\\Desktop\\Facultate\\An 4\\SCD\\BikeRental\\BikeRentalClient\\BikeRentalClient\\ManufacturerUtils\\ManufacturerService.cs",
               "RelativeDocumentMoniker": "BikeRentalClient\\ManufacturerUtils\\ManufacturerService.cs",
@@ -109,25 +175,24 @@
               "RelativeToolTip": "BikeRentalClient\\ManufacturerUtils\\ManufacturerService.cs",
               "ViewState": "AgIAAC4AAAAAAAAAAAAuwEMAAAA7AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-07T13:13:05.651Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-07T13:13:05.651Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "ManufacturerPanel.cs",
               "DocumentMoniker": "C:\\Users\\iusti\\Desktop\\Facultate\\An 4\\SCD\\BikeRental\\BikeRentalClient\\BikeRentalClient\\ManufacturerUtils\\ManufacturerPanel.cs",
               "RelativeDocumentMoniker": "BikeRentalClient\\ManufacturerUtils\\ManufacturerPanel.cs",
               "ToolTip": "C:\\Users\\iusti\\Desktop\\Facultate\\An 4\\SCD\\BikeRental\\BikeRentalClient\\BikeRentalClient\\ManufacturerUtils\\ManufacturerPanel.cs",
               "RelativeToolTip": "BikeRentalClient\\ManufacturerUtils\\ManufacturerPanel.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEAAAAAFAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACIAAAAsAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-07T13:13:01.583Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 5,
               "Title": "ManufacturerPanel.cs [Design]",
               "DocumentMoniker": "C:\\Users\\iusti\\Desktop\\Facultate\\An 4\\SCD\\BikeRental\\BikeRentalClient\\BikeRentalClient\\ManufacturerUtils\\ManufacturerPanel.cs",
               "RelativeDocumentMoniker": "BikeRentalClient\\ManufacturerUtils\\ManufacturerPanel.cs",
@@ -139,7 +204,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 12,
               "Title": "ApiService.cs",
               "DocumentMoniker": "C:\\Users\\iusti\\Desktop\\Facultate\\An 4\\SCD\\BikeRental\\BikeRentalClient\\BikeRentalClient\\ApiService.cs",
               "RelativeDocumentMoniker": "BikeRentalClient\\ApiService.cs",
@@ -147,12 +212,11 @@
               "RelativeToolTip": "BikeRentalClient\\ApiService.cs",
               "ViewState": "AgIAAA4AAAAAAAAAAAAIwCoAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-07T13:11:34.075Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-07T13:11:34.075Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 15,
               "Title": "BikeService.cs",
               "DocumentMoniker": "C:\\Users\\iusti\\Desktop\\Facultate\\An 4\\SCD\\BikeRental\\BikeRentalClient\\BikeRentalClient\\BikeUtils\\BikeService.cs",
               "RelativeDocumentMoniker": "BikeRentalClient\\BikeUtils\\BikeService.cs",
@@ -160,18 +224,17 @@
               "RelativeToolTip": "BikeRentalClient\\BikeUtils\\BikeService.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAEgAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-07T13:08:09.388Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-07T13:08:09.388Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 7,
               "Title": "BikePanel.cs",
               "DocumentMoniker": "C:\\Users\\iusti\\Desktop\\Facultate\\An 4\\SCD\\BikeRental\\BikeRentalClient\\BikeRentalClient\\BikeUtils\\BikePanel.cs",
               "RelativeDocumentMoniker": "BikeRentalClient\\BikeUtils\\BikePanel.cs",
               "ToolTip": "C:\\Users\\iusti\\Desktop\\Facultate\\An 4\\SCD\\BikeRental\\BikeRentalClient\\BikeRentalClient\\BikeUtils\\BikePanel.cs",
               "RelativeToolTip": "BikeRentalClient\\BikeUtils\\BikePanel.cs",
-              "ViewState": "AgIAAN4BAAAAAAAAAAAiwPUBAAANAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAFQAAAAlAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-07T13:05:53.082Z",
               "EditorCaption": ""
@@ -186,12 +249,11 @@
               "RelativeToolTip": "BikeRentalClient\\ManufacturerUtils\\Manufacturer.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-07T13:08:05.869Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-07T13:08:05.869Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 8,
               "Title": "BikePanel.cs [Design]",
               "DocumentMoniker": "C:\\Users\\iusti\\Desktop\\Facultate\\An 4\\SCD\\BikeRental\\BikeRentalClient\\BikeRentalClient\\BikeUtils\\BikePanel.cs",
               "RelativeDocumentMoniker": "BikeRentalClient\\BikeUtils\\BikePanel.cs",
@@ -203,7 +265,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 10,
+              "Title": "Dashboard.cs",
+              "DocumentMoniker": "C:\\Users\\iusti\\Desktop\\Facultate\\An 4\\SCD\\BikeRental\\BikeRentalClient\\BikeRentalClient\\Dashboard.cs",
+              "RelativeDocumentMoniker": "BikeRentalClient\\Dashboard.cs",
+              "ToolTip": "C:\\Users\\iusti\\Desktop\\Facultate\\An 4\\SCD\\BikeRental\\BikeRentalClient\\BikeRentalClient\\Dashboard.cs",
+              "RelativeToolTip": "BikeRentalClient\\Dashboard.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAAlAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-13T19:53:52.801Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
               "Title": "Bike.cs",
               "DocumentMoniker": "C:\\Users\\iusti\\Desktop\\Facultate\\An 4\\SCD\\BikeRental\\BikeRentalClient\\BikeRentalClient\\BikeUtils\\Bike.cs",
               "RelativeDocumentMoniker": "BikeRentalClient\\BikeUtils\\Bike.cs",
@@ -211,8 +286,7 @@
               "RelativeToolTip": "BikeRentalClient\\BikeUtils\\Bike.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-07T13:05:46.823Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-07T13:05:46.823Z"
             }
           ]
         },

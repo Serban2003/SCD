@@ -1,6 +1,7 @@
 package com.example.BikeRental.UserUtils;
 
 import com.example.BikeRental.BikeUtils.Bike;
+import com.example.BikeRental.BikeUtils.BikeRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -11,10 +12,12 @@ import java.util.Optional;
 @Service
 public class UserService {
     private final UserRepository userRepository;
+    private final BikeRepository bikeRepository;
     private final PasswordEncoder passwordEncoder;
 
-    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder){
+    public UserService(UserRepository userRepository, BikeRepository bikeRepository, PasswordEncoder passwordEncoder){
         this.userRepository = userRepository;
+        this.bikeRepository = bikeRepository;
         this.passwordEncoder = passwordEncoder;
     }
 
@@ -31,8 +34,24 @@ public class UserService {
         return userRepository.findById(id);
     }
 
-    public void deleteUser(Integer id){
-        userRepository.deleteById(id);
+    @Transactional
+    public void deleteUser(Integer userId) {
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+
+        // Find bikes rented by this user
+        List<Bike> rented = bikeRepository.findRentedBikesByUser(userId);
+
+        for (Bike bike : rented) {
+            bike.setStatus(Bike.BikeStatus.AVAILABLE);
+            bike.setCurrentRenter_id(null);
+            bike.setRentDate(null);
+        }
+
+        bikeRepository.saveAll(rented);
+
+        // Now safely delete the user
+        userRepository.delete(user);
     }
 
     @Transactional

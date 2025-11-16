@@ -16,6 +16,7 @@
         <router-view />
       </v-main>
     </v-layout>
+    <AiChatBubble />
     <app-footer />
   </v-app>
 </template>

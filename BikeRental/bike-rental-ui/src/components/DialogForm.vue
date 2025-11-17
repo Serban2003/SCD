@@ -294,7 +294,7 @@ watch(
  * Reset draft when dialog is closed.
  */
 watch(model, isOpen => {
-  if (!isOpen) {
+  if (!isOpen && !props.editing) {
     props.fields.forEach(f => {
       draft[f.key] = ''
     })

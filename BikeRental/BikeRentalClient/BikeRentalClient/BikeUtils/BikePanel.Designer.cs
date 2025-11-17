@@ -45,6 +45,9 @@
             panel1 = new Panel();
             rentBikeButton = new Button();
             flowLayoutPanel1 = new FlowLayoutPanel();
+            panel2 = new Panel();
+            panel3 = new Panel();
+            refreshButton = new Button();
             yearGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)yearUpNumeric).BeginInit();
             ((System.ComponentModel.ISupportInitialize)yearDownNumeric).BeginInit();
@@ -56,6 +59,7 @@
             groupBox3.SuspendLayout();
             flowLayoutPanel2.SuspendLayout();
             groupBox4.SuspendLayout();
+            panel1.SuspendLayout();
             flowLayoutPanel1.SuspendLayout();
             SuspendLayout();
             // 
@@ -121,7 +125,7 @@
             dataGridMain.Name = "dataGridMain";
             dataGridMain.ReadOnly = true;
             dataGridMain.RowHeadersWidth = 72;
-            dataGridMain.Size = new Size(600, 326);
+            dataGridMain.Size = new Size(600, 359);
             dataGridMain.TabIndex = 10;
             dataGridMain.SelectionChanged += dataGridMain_SelectionChanged;
             // 
@@ -197,7 +201,7 @@
             groupBox3.Margin = new Padding(2, 2, 10, 2);
             groupBox3.Name = "groupBox3";
             groupBox3.Padding = new Padding(5);
-            groupBox3.Size = new Size(130, 326);
+            groupBox3.Size = new Size(130, 359);
             groupBox3.TabIndex = 25;
             groupBox3.TabStop = false;
             groupBox3.Text = "Filters";
@@ -212,11 +216,13 @@
             flowLayoutPanel2.Controls.Add(applyFiltersButton);
             flowLayoutPanel2.Controls.Add(panel1);
             flowLayoutPanel2.Controls.Add(rentBikeButton);
+            flowLayoutPanel2.Controls.Add(panel3);
+            flowLayoutPanel2.Controls.Add(refreshButton);
             flowLayoutPanel2.Dock = DockStyle.Fill;
             flowLayoutPanel2.FlowDirection = FlowDirection.TopDown;
             flowLayoutPanel2.Location = new Point(5, 21);
             flowLayoutPanel2.Name = "flowLayoutPanel2";
-            flowLayoutPanel2.Size = new Size(120, 300);
+            flowLayoutPanel2.Size = new Size(120, 333);
             flowLayoutPanel2.TabIndex = 12;
             // 
             // groupBox4
@@ -248,6 +254,7 @@
             // panel1
             // 
             panel1.BackColor = Color.LightGray;
+            panel1.Controls.Add(panel2);
             panel1.Dock = DockStyle.Fill;
             panel1.ForeColor = SystemColors.ControlText;
             panel1.Location = new Point(3, 270);
@@ -280,6 +287,39 @@
             flowLayoutPanel1.Size = new Size(800, 500);
             flowLayoutPanel1.TabIndex = 26;
             // 
+            // panel2
+            // 
+            panel2.BackColor = Color.LightGray;
+            panel2.Dock = DockStyle.Fill;
+            panel2.ForeColor = SystemColors.ControlText;
+            panel2.Location = new Point(0, 0);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(114, 2);
+            panel2.TabIndex = 28;
+            // 
+            // panel3
+            // 
+            panel3.BackColor = Color.LightGray;
+            panel3.Dock = DockStyle.Fill;
+            panel3.ForeColor = SystemColors.ControlText;
+            panel3.Location = new Point(3, 303);
+            panel3.Name = "panel3";
+            panel3.Size = new Size(114, 2);
+            panel3.TabIndex = 29;
+            // 
+            // refreshButton
+            // 
+            refreshButton.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            refreshButton.Location = new Point(0, 308);
+            refreshButton.Margin = new Padding(0);
+            refreshButton.Name = "refreshButton";
+            refreshButton.Padding = new Padding(2, 0, 2, 0);
+            refreshButton.Size = new Size(120, 25);
+            refreshButton.TabIndex = 30;
+            refreshButton.Text = "Refresh";
+            refreshButton.UseVisualStyleBackColor = true;
+            refreshButton.Click += refreshButton_Click;
+            // 
             // BikePanel
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -305,6 +345,7 @@
             flowLayoutPanel2.ResumeLayout(false);
             flowLayoutPanel2.PerformLayout();
             groupBox4.ResumeLayout(false);
+            panel1.ResumeLayout(false);
             flowLayoutPanel1.ResumeLayout(false);
             flowLayoutPanel1.PerformLayout();
             ResumeLayout(false);
@@ -328,5 +369,8 @@
         private ComboBox availabilityFilterComboBox;
         private Button rentBikeButton;
         private Panel panel1;
+        private Panel panel2;
+        private Panel panel3;
+        private Button refreshButton;
     }
 }

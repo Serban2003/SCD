@@ -64,7 +64,8 @@ public class UserService {
         existingUser.setEmail(payloadUser.getEmail());
 
         if (payloadUser.getPassword() != null && !payloadUser.getPassword().isBlank()) {
-            existingUser.setPassword(passwordEncoder.encode(payloadUser.getPassword()));
+            if(!payloadUser.getPassword().equals(existingUser.getPassword()))
+                existingUser.setPassword(passwordEncoder.encode(payloadUser.getPassword()));
         }
 
         return userRepository.save(existingUser);

@@ -33,7 +33,7 @@ namespace BikeRentalClient.BikeUtils
 
             LoadManufacturers();
             LoadBikes();
-            
+
 
             RefreshUserRentedList();
 
@@ -411,7 +411,7 @@ namespace BikeRentalClient.BikeUtils
         {
             if (dataGridMain.CurrentRow?.DataBoundItem is not Bike bike)
                 return;
-            
+
             if (IsOwnedByLoggedUser(bike))
             {
                 // --- UNRENT FLOW ---
@@ -465,7 +465,7 @@ namespace BikeRentalClient.BikeUtils
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show( $"Error while finishing rental: {ex.Message}", "Error",
+                    MessageBox.Show($"Error while finishing rental: {ex.Message}", "Error",
                         MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
 
@@ -490,7 +490,7 @@ namespace BikeRentalClient.BikeUtils
             manufacturerById.TryGetValue(bike.Manufacturer_id, out var manufacturerName2);
             string label2 = $"{(manufacturerName2 ?? "Unknown")} {bike.Model}";
 
-            var confirmRent = MessageBox.Show( $"Rent \"{label2}\" for {bike.Price:C2} per hour?",
+            var confirmRent = MessageBox.Show($"Rent \"{label2}\" for {bike.Price:C2} per hour?",
                 "Confirm rent",
                 MessageBoxButtons.YesNo,
                 MessageBoxIcon.Question,
@@ -554,5 +554,10 @@ namespace BikeRentalClient.BikeUtils
                 userRentedBikeIdList = list.Select(b => b.Bike_id).ToHashSet();
         }
 
+        private void refreshButton_Click(object sender, EventArgs e)
+        {
+            LoadBikes();
+            OnUserChanged();
+        }
     }
 }

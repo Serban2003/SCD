@@ -48,4 +48,19 @@ public class BikeService {
         return bikeRepository.findRentedBikesByUser(user_id);
     }
 
+    public List<Bike> getBikesByStatus(String status) {
+        return bikeRepository.findByStatus(status);
+    }
+
+    public List<Bike> getBikesByManufacturer(Integer manufacturerId) {
+        return bikeRepository.findByManufacturerId(manufacturerId);
+    }
+
+    public List<Bike> getBikesByYearRange(Integer startYear, Integer endYear) {
+        return bikeRepository.findByYearBetween(startYear, endYear);
+    }
+
+    public List<Bike> getBikesByPriceRange(Float minPrice, Float maxPrice) {
+        return bikeRepository.findByPriceBetween(minPrice, maxPrice);
+    }
 }

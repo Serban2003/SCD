@@ -18,7 +18,31 @@ public class BikeController {
     }
 
     @GetMapping
-    public List<Bike> getAllBikes() {
+    public List<Bike> getBikes(
+            @RequestParam(name = "status", required = false) String status,
+            @RequestParam(name = "manufacturer_id", required = false) Integer manufacturerId,
+            @RequestParam(name = "start_year", required = false) Integer startYear,
+            @RequestParam(name = "end_year", required = false) Integer endYear,
+            @RequestParam(name = "min_price", required = false) Float minPrice,
+            @RequestParam(name = "max_price", required = false) Float maxPrice
+    ) {
+
+        if (status != null) {
+            return bikeService.getBikesByStatus(status);
+        }
+
+        if (manufacturerId != null) {
+            return bikeService.getBikesByManufacturer(manufacturerId);
+        }
+
+        if (startYear != null && endYear != null) {
+            return bikeService.getBikesByYearRange(startYear, endYear);
+        }
+
+        if (minPrice != null && maxPrice != null) {
+            return bikeService.getBikesByPriceRange(minPrice, maxPrice);
+        }
+
         return bikeService.getAllBikes();
     }
 
